@@ -27,25 +27,7 @@
 
 
    $(document).on("click",'#mostrar-todos',function(){
-
-   var key = 'all';
-
-  $.ajax({
-      url:"../../control/usuarioControllers.php?usuario&accion=request",
-      type:"POST",
-      data:{key},
-      beforeSend: function(){
-      },
-  }).done(function(response){
-     var object = JSON.parse(response);
-     var template ="";
-      if(object[0].result === '1'){
-
-     template = showRequest(object); $("#table-solicitudes").html(template)
-
-      }else if(object[0].result === '2'){ alert("no existe")}
-  })
-   
+       showAll()
 })
 
 $(document).on("click","#alta",function(){
@@ -95,6 +77,7 @@ else {
               
                  alertPositive("Se guardo exitosamente");
                  $("#modalAlta").modal("hide") 
+                 showAll()
 
                }if(objeto[0].result === '2'){
                  alertNegative("Error al actualizar estado");return false
@@ -268,6 +251,26 @@ function alertPositive(str){
       timer: 3000,
       showConfirmButton: false,
   });
+  }
+
+  function showAll(){
+    var key = 'all';
+
+    $.ajax({
+        url:"../../control/usuarioControllers.php?usuario&accion=request",
+        type:"POST",
+        data:{key},
+        beforeSend: function(){
+        },
+    }).done(function(response){
+       var object = JSON.parse(response);
+       var template ="";
+        if(object[0].result === '1'){
+  
+       template = showRequest(object); $("#table-solicitudes").html(template)
+  
+        }else if(object[0].result === '2'){ alert("no existe")}
+    })
   }
 
    
