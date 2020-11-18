@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="../../estilos/personal/js/jquery.min.js"></script>
+
+
+    <link rel="stylesheet" href="../../estilos/personal/fontawesome/css/all.css">
+
+    <link rel="stylesheet" href="../../estilos/personal/css/reclute/recursos_form_step.css">
+    <link rel="stylesheet" href="../../estilos/personal/css/sidebarper.css">
+   
+
+
+    <title>Express | Logística inversa</title>
+
+</head>
+
+<body>
+
+   
+    <div class="fondoimagen" id="fondoimagen">
+        
+       
+        <img class="logo-main" id="logodos" src="../../estilos/imagenes/logo2.png" alt="">
+    
+        <img class="logo-main-dos" id="logouno" src="../../estilos/imagenes/logo.png" alt="">
+    
+    </div>
+    <nav>
+        <div class="contenedordemenu">
+            <ul>
+                <li>
+                    <a href="../../index.html">
+
+                        <div class="fondocirculodelicono">
+                            <i class="iconoadentrodelcirculo fas fa-home"></i>
+                        </div>
+
+                        <p class="textoicono">Inicio</p>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="../../nosotros.html">
+
+                        <div class="fondocirculodelicono">
+                            <i class="iconoadentrodelcirculo fas fa-box-open"></i>
+                        </div>
+
+                        <p class="textoicono">#Express</p>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="../../productos.html">
+
+                        <div class="fondocirculodelicono">
+                            <i class="iconoadentrodelcirculo fas fa-mobile-alt"></i>
+                        </div>
+
+                        <p class="textoicono">Productos</p>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="../../contacto.html">
+
+                        <div class="fondocirculodelicono">
+                            <i class="iconoadentrodelcirculo fas fa-phone"></i>
+                        </div>
+
+                        <p class="textoicono">Contacto</p>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+
+                        <div class="fondocirculodelicono adm">
+                            <i class="iconoadentrodelcirculo fas fa-user"></i>
+                        </div>
+
+                        <p class="textoicono">Login</p>
+
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <input class="input-form" type="checkbox" id="cuadraditocheck">
+    <label class="titulo-label" for="cuadraditocheck">
+        <i class="fas fa-bars" id="boton"></i>
+        <i class="fas fa-times" id="cancel"></i>
+    </label>
+    <div class="sidebarper completo">
+        <header>Express</header>
+        <ul class="completo">
+            <li>
+                <a href="../../index.html"><i class="fas fa-home"></i>Inicio</a>
+            </li>
+            <li>
+                <a href="../../views/products/corporativo.html"><i class="fas fa-truck"></i>Logistica inversa</a>
+            </li>
+            <li>
+                <a href="../../views/products/corp-traslados.html"><i class="fas fa-stream"></i>Distribución</a>
+            </li>
+            <li>
+                <a href="../../views/products/ecommerce.html"><i class="fas fa-laptop"></i>Ecommerce</a>
+            </li>
+            <li>
+                <a href="../../views/products/particulares.html"><i class="fas fa-box-open"></i>Particulares</a>
+            </li>
+            
+            <li>
+                <a href="../../views/products/productos.html"><i class="fas fa-shopping-bag"></i>Productos</a>
+            </li>
+            <li>
+                <a href="../../views/company/nosotros.html"><i class="fas fa-envelope"></i>#Express</a>
+            </li>
+            <li>
+                <a href="../../views/company/contacto.html"><i class="fas fa-phone"></i>Contacto</a>
+            </li>
+            <li>
+                <a href="../../views/login/loginUs.php"><i class="fas fa-users"></i>Login</a>
+            </li>
+
+        </ul>
+
+
+
+    </div>
+
+    <div class="container form-first" id="container-form">
+
+
+        <header>Registrate para empezar!</header>
+        <div class="progress-bar">
+            <div class="step">
+                <p>
+                </p>
+                <div class="bullet">
+                    <span>1</span>
+                </div>
+                <div class="check fas fa-check">
+                </div>
+            </div>
+            <div class="step">
+                <p>
+                </p>
+                <div class="bullet">
+                    <span>2</span>
+                </div>
+                <div class="check fas fa-check">
+                </div>
+            </div>
+            <div class="step">
+                <p>
+                </p>
+                <div class="bullet">
+                    <span>3</span>
+                </div>
+                <div class="check fas fa-check">
+                </div>
+            </div>
+            <div class="step">
+                <p>
+                </p>
+                <div class="bullet">
+                    <span>4</span>
+                </div>
+                <div class="check fas fa-check">
+                </div>
+            </div>
+        </div>
+        <div class="form-outer">
+            <form action="" id="datosPost" enctype="multipart/form-data">
+                <div class="page slide-page">
+                    <!-- <div class="title">
+    Basic Info:</div> -->
+                    <div class="field">
+                        <div class="label">
+                            Nombre</div>
+                        <input type="text" id="nombre" >
+                    </div>
+                    <div class="field">
+                        <div class="label">
+                            Apellido</div>
+                        <input type="text" id="apellido" >
+                    </div>
+                    <div class="field">
+                        <div class="label">
+                            Correo Electronico</div>
+                        <input type="email" id="email" >
+                    </div>
+                    <div class="field">
+                        <div class="label">
+                            Telefono</div>
+                            <select class="caracteristica" id="caracteristica">
+                                <option value="+54">+54</option>
+                                <option value="+598">+598</option>
+
+                            </select>
+                        <input type="text" id="telefono_celular" >
+                    </div>
+                    <div class="field">
+                        <div class="label">
+                            ¿Como nos conociste?</div>
+                        <select id="via_conocimiento">
+                            <option value="facebook">Facebook</option>
+                            <option value="Instagram">Instagram</option>
+
+                        </select>
+                    </div>
+                    <div class="field">
+                        <button class="firstNext next">Siguiente</button>
+                    </div>
+                </div>
+                <div class="page">
+                    <!-- <div class="title">
+    Date of Birth:</div> -->
+                    <div class="field">
+                        <div class="label">
+                            Pais</div>
+                        <select id="pais">
+
+                        </select>
+                    </div>
+                    <div class="field">
+                        <div class="label">
+                            Provincia</div>
+                        <select id="provincia">
+
+                        </select>
+                    </div>
+                    <div class="field">
+                        <div class="label">
+                            Localidad</div>
+                        <input type="text" id="localidad" >
+                    </div>
+                    <div class="field">
+                        <div class="label">
+                            Domicilio</div>
+                        <input type="text" id="domicilio" >
+                    </div>
+                    <div class="field">
+                        <div class="label">
+                            Codigo Postal</div>
+                        <input type="text" id="codigoPostal" >
+                       
+                    </div>
+                    <div class="box-cp" id="cpar">
+                    <a class="cp" href="https://www.correoargentino.com.ar/formularios/cpa" target="_blank">Consulta tu Codigo Postal</a>
+                </div>
+                <div class="box-cp" id="cpur">
+                    <a class="cp" href="https://www.correo.com.uy/codigospostales" target="_blank">Consulta tu Codigo Postal</a>
+                </div>
+                    <div class="field btns">
+                        <button class="prev-1 prev">Atras</button>
+                        <button class="next-1 next">Siguiente</button>
+                    </div>
+                </div>
+
+
+                <div class="page">
+                    <!-- <div class="title">
+    Contact Info:</div> -->
+                    <div class="field">
+                     <div class="label">
+                         Documento</div>
+                    <select id="dni" class="caracteristica">
+                         <option value="dni">DNI</option>
+                         <option value="enrolamiento">Cedula</option>
+                        <option value="pasaporte">Pasaporte</option>
+                        <option value="civ">L.Civica</option>
+                        <option value="enrolamiento">L. Enrolamiento</option>
+                    </select>
+                    
+                    <input type="text" id="numero_dni" placeholder="Documento" >
+                    </div>
+                    
+                    <div class="field">
+                        <div class="label">
+                            Foto frontal documento</div>
+                        <input type="file" id="fotodocfront">
+                    </div>
+                    <div class="field">
+                        <div class="label">
+                            Foto posterior documento</div>
+                        <input type="file" id="fotodocpost">
+                    </div>
+                   
+                    <div class="field">
+                        <div class="label">
+                            Monotributo / AFIP / Mides</div>
+                        <select id="monotributo">
+                            <option value="si">si</option>
+                            <option value="no">no</option>
+
+                        </select>
+                    </div>
+                    <div class="field">
+                        <div class="label">
+                            Constancia de inscripción</div>
+                        <input type="file" id="infomono">
+                    </div>
+                    <!-- MENSAJE -->
+                    <div class="container-monotributo" id="container-monotributo">
+                        <div class="box-monitributo" id="box-monitributo">
+                        </div>
+                    </div>
+                    <!-- FIN DEL MENSAJE -->
+
+                    <div class="field btns">
+                        <button class="prev-2 prev">Atras</button>
+                        <button class="next-2 next">Siguiente</button>
+                    </div>
+                </div>
+
+                <div class="page">
+
+                    <!-- <div class="field">
+                        <div class="label">
+                            Email</div>
+                        <input type="email" id="email" >
+                    </div> -->
+
+                    <div class="field">
+                        <div class="label">
+                           Foto CUIL o RUT</div>
+                           <input type="file" id="cuilrut" > 
+                    </div>
+                    <div class="field">
+                        <div class="label" style="font-size: 0.7rem;">
+                           Comprobante de domicilio / Servicio</div>
+                           <input type="file" id="comprobantedomicilio" > 
+                    </div>
+                    <div class="field">
+                        <div class="label">
+                            Cuenta Bancaria CBU</div>
+                           <input type="text" id="cbu" placeholder="Aqui te depositaremos"> 
+                    </div>
+                    
+                    <div class="field">
+                        <div class="label">
+                            Tipo Vehiculo</div>
+                        <select id="tipo_vehiculo">
+                            <option value="auto">Auto</option>
+                            <option value="camioneta">Camioneta</option>
+                            <option value="moto">Moto</option>
+                            <option value="bicicleta">bicicleta</option>
+
+                        </select>
+                    </div>
+                    <div class="field">
+                        <div class="label">
+                            Horario Disponible</div>
+                        <select id="horario_disponible">
+                            <option value="full-time">FULL TIME</option>
+                            <option value="part-time-manana">PART-TIME-MAÑANA</option>
+                            <option value="part-time-tarde">PART-TIME-TARDE</option>
+                        </select>
+                    </div>
+                   
+                        <input type="hidden" id="tipo" value="Empleado" readonly>
+                        <input type="hidden" id="horario_solicitud" name="horario_solicitud" readonly>
+                        <span style="color: black;" id="procesando" class="procesando">Enviando...</span>
+                    
+                    <div class="field btns">
+                        <button class="prev-3 prev">Atras</button>
+                        <button type="submit" class="submit" id="submit">Enviar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+    
+
+
+    
+
+        <div class="container-mensaje-exito" id="container-mensaje-exito">
+            <div class="box-mensaje-exito">
+                <div class="imagen-exito">
+                    <img class="imagen-exito" src="../../estilos/imagenes/front/confirmed.png" alt="">
+                </div>
+                <div class="box-texto-mensaje">
+                    <h4>Estamos revisando tu solicitud!</h4>
+                    <p>¡Nos estaremos comunicando con vos en minutos!</p>
+                </div>
+            </div>
+        </div>
+
+        
+
+        
+    
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="../../estilos/personal/js/jquery.js"></script>
+    
+    <script src="../../estilos/personal/js/work/form.js"></script>
+    <script src="../../assets/work/first-datos-reclute.js"></script>
+
+    <script src="../../estilos/personal/js/logo.js"> </script>
+
+</body>
+
+</html>
