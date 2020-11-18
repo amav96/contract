@@ -164,9 +164,29 @@ if(btnAccept != null){
 				 		$.ajax({
 				 			url:"../control/usuarioControllers.php?usuario&accion=signedContract",
 				 			type: "post",
-				 			data: {cuit,domicilio,marca,modelo,patente,email,telefono,fecha,key,dataUrl, documento,cbu,banco},
+							 data: {cuit,domicilio,marca,modelo,patente,email,telefono,fecha,key,dataUrl, documento,cbu,banco},
+							 beforedSend: function(){
+
+							 },}).done(function(response){
+								 var object = JSON.parse(response)
+
+								
+								 if(object[0].result === '1'){
+
+					
+									var url = location.href ='http://localhost/contract/control/usuarioControllers.php?usuario&accion=showContract&numerodoc=' + documento;
+
+									console.log(url)
+									return
+
+									
+									
+								 }
+
+							 })
 						
-				 			success: function(response){
+				 			
+
 
 				 	// 			$("#subspinner-firmar").hide()
 								
@@ -185,8 +205,8 @@ if(btnAccept != null){
 				    // 		clearCanvas()
 				    // 		alertNegative('La firma ingresada ya existe!'); return false;
 				 	//            }
-				 			}
-				 		})
+				 		
+				 		
 				 	}
 				   })
 				}

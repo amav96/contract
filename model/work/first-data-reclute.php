@@ -23,7 +23,7 @@ function InsertarPrimerRegistro($nroDocumento,$fotodocumentofront, $fotodocument
    
 
     if($result->num_rows > 0){
-        echo 3;
+        echo '3';
     } else {
         
  cargarImagenesDocYMono($nroDocumento,$fotodocumentofront, $fotodocumentoPost);
@@ -46,10 +46,6 @@ function InsertarPrimerRegistro($nroDocumento,$fotodocumentofront, $fotodocument
      $cbu = $_POST["cbu"];
      $tipo = $_POST["tipo"];
 
-
-    
-     print_r($_POST);
-
      $query="INSERT INTO reclute (first_name,last_name,mail,knowledge_path,country,province,location,home_address,postal_code,dni,monotributo,characteristic,vehicle_type,available_schedules,id_number,phone_number,cbu,type_request,status,fecha) values ('$nombre','$apellido','$email','$via_conocimiento','$pais','$provincia','$localidad','$domicilio','$codigoPostal','$dni','$monotributo','$caracteristica','$tipo_vehiculo','$horario_disponible','$nroDocumento','$telefono_celular','$cbu','$tipo','Nueva','$horario_solicitud')";
 
      $result=mysqli_query($connection,$query);
@@ -58,11 +54,11 @@ function InsertarPrimerRegistro($nroDocumento,$fotodocumentofront, $fotodocument
          die("Query Failer:" .mysqli_error($connection));
      } 
 
-     if($result>0){
-         echo 1; 
+     if($result){
+         echo '1'; 
 
      } else {
-         echo 2;
+         echo '2';
      }
 
 
@@ -75,10 +71,8 @@ function InsertarPrimerRegistro($nroDocumento,$fotodocumentofront, $fotodocument
 function cargarImagenesDocYMono($nroDocumento,$fotodocumentofront, $fotodocumentopost)
 {
 
-
     // Primera imagen front
 
-    
     $type = 'jpg';
 
 

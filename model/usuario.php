@@ -3,18 +3,22 @@
 
 class Usuarios{
 
-    private $identificacion;
-    private $fecha;
-    private $imgFirma;
+    private $username;
+    private $nombre;
+    private $tipo;
+    private $nro_dni;
+    private $horarioSolicitud;
+    private $imagenFirma;
     private $cuit;
     private $domicilio;
-    private $marcaAuto;
-    private $modeloAuto;
+    private $vehiculoMarca;
+    private $vehiculoModelo;
     private $patente;
     private $email;
-    private $telefono;
+    private $telefono_celular;
     private $cbu;
     private $banco;
+    private $idenviado;
     private $db;
 
 
@@ -23,14 +27,23 @@ class Usuarios{
         $this->db=Database::connect();
     }
 
-    public function getIdentificacion(){
-        return $this->identificacion;
+    public function getUsername(){
+        return $this->username;
     }
-    public function getFecha(){
-        return $this->fecha;
+    public function getNombre(){
+        return $this->nombre;
     }
-    public function getImgFirma(){
-        return $this->imgFirma;
+    public function getTipo(){
+        return $this->tipo;
+    }
+    public function getNro_dni(){
+        return $this->nro_dni;
+    }
+    public function getHorarioSolicitud(){
+        return $this->horarioSolicitud;
+    }
+    public function getImagenFirma(){
+        return $this->imagenFirma;
     }
     public function getCuit(){
         return $this->cuit;
@@ -38,11 +51,11 @@ class Usuarios{
     public function getDomicilio(){
         return $this->domicilio;
     }
-    public function getMarcaAuto(){
-        return $this->marcaAuto;
+    public function getVehiculoMarca(){
+        return $this->vehiculoMarca;
     }
-    public function getModeloAuto(){
-        return $this->modeloAuto;
+    public function getVehiculoModelo(){
+        return $this->vehiculoModelo;
     }
     public function getPatente(){
         return $this->patente;
@@ -50,8 +63,8 @@ class Usuarios{
     public function getEmail(){
         return $this->email;
     }
-    public function getTelefono(){
-        return $this->telefono;
+    public function getTelefono_celular(){
+        return $this->telefono_celular;
     }
 
     public function getCbu(){
@@ -61,101 +74,127 @@ class Usuarios{
     public function getBanco(){
         return $this->banco;
     }
-
-
-
-    public function setIdentificacion($identificacion){
-        $this->identificacion=$identificacion;
+    public function getIdenviado(){
+        return $this->idenviado;
     }
 
-    public function setFecha($fecha){
-        $this->fecha=$fecha;
+    public function setUsername($username){
+        $this->username=$this->db->real_escape_string($username);
+    }
+    public function setNombre($nombre){
+        $this->nombre=$this->db->real_escape_string($nombre);
+    }
+    public function setTipo($tipo){
+        $this->tipo=$this->db->real_escape_string($tipo);
     }
 
-    public function setImgFirma($imgFirma){
-        $this->imgFirma=$imgFirma;
+
+    public function setNro_dni($nro_dni){
+        $this->nro_dni=$this->db->real_escape_string($nro_dni);
+    }
+
+    public function setHorarioSolicitud($horarioSolicitud){
+        $this->horarioSolicitud=$horarioSolicitud;
+    }
+
+    public function setImagenFirma($imagenFirma){
+        $this->imagenFirma=$imagenFirma;
     }
     
     public function setCuit($cuit){
         $this->cuit=$cuit;
     }
     public function setDomicilio($domicilio){
-        $this->domicilio=$domicilio;
+        $this->domicilio=$this->db->real_escape_string($domicilio);
     }
-    public function setMarcaAuto($marcaAuto){
-        $this->marcaAuto=$marcaAuto;
+    public function setVehiculoMarca($vehiculoMarca){
+        $this->vehiculoMarca=$this->db->real_escape_string($vehiculoMarca);
     }
-    public function setModeloAuto($modeloAuto){
-        $this->modeloAuto=$modeloAuto;
+    public function setVehiculoModelo($vehiculoModelo){
+        $this->vehiculoModelo=$this->db->real_escape_string($vehiculoModelo);
     }
     public function setPatente($patente){
-        $this->patente=$patente;
+        $this->patente=$this->db->real_escape_string($patente);
     }
     public function setEmail($email){
         $this->email=$email;
     }
-    public function setTelefono($telefono){
-        $this->telefono=$telefono;
+    public function setTelefono_celular($telefono_celular){
+        $this->telefono_celular=$this->db->real_escape_string($telefono_celular);
     }
 
     public function setCbu($cbu){
-        $this->cbu=$cbu;
+        $this->cbu=$this->db->real_escape_string($cbu);
     }
 
     public function setBanco($banco){
-        $this->banco=$banco;
+        $this->banco=$this->db->real_escape_string($banco);
+    }
+    public function setIdenviado($idenviado){
+        $this->idenviado=$this->db->real_escape_string($idenviado);
     }
 
-
+  
     public function gettAllReclute(){
         
-       if($_GET){
-
            $result = false;
-           $sql ="SELECT id_number,first_name,last_name,home_address,mail,phone_number,status_process,
-           img_signed,signed_date,cuit,banco,cbu,vehicle_brand,vehicle_model,patent from reclute 
-           where id_number='{$this->getIdentificacion()}'";
-           $usuario = $this->db->query($sql);
-          
+           $sql ="";
+
            
-           if($usuario && $usuario->num_rows ===  1){
+           
+           if(isset($_POST["key"]) && $_POST["key"]==='all'){
+            $sql.="SELECT * from reclute order by momento desc ";
+           }
+            if(isset($_REQUEST["numerodoc"]) ||  !empty($_REQUEST["numerodoc"])) {
+              $sql.=" SELECT * from reclute where id_number like '%{$this->getNro_dni()}%' or last_name like '%{$this->getNro_dni()}%' or first_name  like '%{$this->getNro_dni()}%' order by momento desc";
+           }
+           $usuario = $this->db->query($sql);
+           if($usuario && $usuario->num_rows > 0){
                $result = $usuario;
            }else {
                $result = false;
            }
            return $result;
            
-    
-       }
+       
     }
 
     public function settersSigned(){
 
-        if($_POST){
+        if($_REQUEST){
             
-              $base_to_php = explode(',', $this->getImgFirma());
+              $result = false;
+              $base_to_php = explode(',', $this->getImagenFirma());
               $data = base64_decode($base_to_php[1]);
-              $filepath = '../resources/firmas/contrato'.$this->getFecha().$this->getIdentificacion().'.png';
+              $filepath = '../resources/firmas/contrato'.$this->getHorarioSolicitud().$this->getnro_dni().'.png';
               $guardarimagen = file_put_contents($filepath, $data, FILE_APPEND);
               if(file_exists($filepath)){
 
-                 $this->setContractEnded();
+                 if($this->setContractEnded()){
+                    $result= 'actualizado';
+                 }else {
+                    $result = 'no-actualizado';
+                 }
 
               }else{
-                  echo "nolsa";
+
+                  $result= 'no-ingreso-firma';
               }
+
+              return $result;
         }
 
     }
 
     private function setContractEnded(){
 
-        $nameImg = 'contrato'.$this->getFecha().$this->getIdentificacion().'.png'; 
+        $nameImg = 'contrato'.$this->getHorarioSolicitud().$this->getNro_dni().'.png'; 
 
         $result = false;
-        $sql = "UPDATE reclute set mail='{$this->getEmail()}',phone_number='{$this->getTelefono()}',cbu='{$this->getCbu()}',banco='{$this->getBanco()}',status_process='waiting_for_discharge',img_signed='$nameImg',signed_date='{$this->getFecha()}',cuit='{$this->getCuit()}',vehicle_brand='{$this->getMarcaAuto()}',vehicle_model='{$this->getCuit()}',patent='{$this->getPatente()}' where id_number='{$this->getIdentificacion()}'";
+        $sql = "UPDATE reclute set mail='{$this->getEmail()}',phone_number='{$this->getTelefono_celular()}',cbu='{$this->getCbu()}',banco='{$this->getBanco()}',status_process='waiting_for_discharge',img_signed='$nameImg',signed_date='{$this->getHorarioSolicitud()}',cuit='{$this->getCuit()}',vehicle_brand='{$this->getVehiculoMarca()}',vehicle_model='{$this->getCuit()}',patent='{$this->getPatente()}' where id_number='{$this->getNro_dni()}'";
+      
         $actualizar = $this->db->query($sql); 
-
+       
         if($actualizar){
             
             $result = true;
@@ -165,13 +204,53 @@ class Usuarios{
             $result = false;
 
         }
-        die();
+        return $result;
+        
 
         // if($actualizar){
 
         // }
        
 
+    }
+
+    public function addUser(){
+
+        $result = false;
+        $sql ="INSERT INTO recolectores (id,tipo,nombre_recolector,email,id_reco) values 
+        ('{$this->getUsername()}','{$this->getTipo()}','{$this->getNombre()}','{$this->getEmail()}','{$this->getIdenviado()}')";
+        
+         $ejecutar = $this->db->query($sql);
+
+         if($ejecutar){
+            
+            
+            if($this->activateStatus()){
+              
+                $result = 'set-update';
+            }else {
+                
+                $result= 'no-update';
+            }
+         }else {
+
+            
+             $result =  'exist-id';
+         }
+         return $result;
+    }
+
+    private function activateStatus(){
+        $result= false;
+        $sql = "UPDATE reclute set status_process='active' where id='{$this->getIdenviado()}'";
+      
+        $ejecutar = $this->db->query($sql);
+        if($ejecutar){
+            $result= true;
+        }else {
+            $result= false;
+        }
+        return $result;
     }
     
 }

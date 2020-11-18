@@ -121,12 +121,14 @@ $(document).ready(function () {
         $("#procesando").show();
 			  },
       success: function (response) {
-        console.log(response);
-        if (response != 3) {
+        
+        if (response === '1') {
+
           Subir()
           ocultar()
           mostrarMensaje()
-        } if(response == 3 || response == 2) {
+
+        } if(response === '3' || response === '2') {
           $("#procesando").hide();
           Swal.fire({
             icon: 'error',

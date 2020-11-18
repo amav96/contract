@@ -19,7 +19,7 @@ if($_POST["usuario"] && $_POST["contrasena"]){
      include("../../control/parcel/db.php");
 
      $query = "SELECT * FROM usuarios where id='$usu' and password='$contra'";
-
+    
      $result=mysqli_query($connection,$query);
 
    

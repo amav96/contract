@@ -33,7 +33,7 @@ $guardarimagen = file_put_contents($filepath, $data, FILE_APPEND);
 
 if($guardarimagen){
 
-echo 1;
+echo '1';
 
     limpiar($idOrden,$fecha,$baseFromJavascript,$base_to_php,$data,$filepath,$guardarimagen);
      

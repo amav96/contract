@@ -56,7 +56,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?= base_url ?>nosotros.html">
+                    <a href="<?= base_url ?>views/company/nosotros.html">
 
                         <div class="fondocirculodelicono">
                             <i class="iconoadentrodelcirculo fas fa-box-open"></i>
@@ -67,7 +67,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?= base_url ?>productos.html">
+                    <a href="<?= base_url ?>views/products/productos.html">
 
                         <div class="fondocirculodelicono">
                             <i class="iconoadentrodelcirculo fas fa-mobile-alt"></i>
@@ -78,7 +78,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="<?= base_url ?>contacto.html">
+                    <a href="<?= base_url ?>views/company/contacto.html">
 
                         <div class="fondocirculodelicono">
                             <i class="iconoadentrodelcirculo fas fa-phone"></i>
@@ -88,17 +88,7 @@
 
                     </a>
                 </li>
-                <li>
-                    <a href="">
-
-                        <div class="fondocirculodelicono adm">
-                            <i class="iconoadentrodelcirculo fas fa-user"></i>
-                        </div>
-
-                        <p class="textoicono">Login</p>
-
-                    </a>
-                </li>
+               
             </ul>
         </div>
     </nav>
@@ -119,15 +109,7 @@
             <li>
                 <a href="<?= base_url ?>index.html"><i class="fas fa-home"></i>Inicio</a>
             </li>
-            <li>
-                <a href="<?= base_url ?>views/products/corporativo.html"><i class="fas fa-truck"></i>Logistica inversa</a>
-            </li>
-            <li>
-                <a href="<?= base_url ?>views/products/corp-traslados.html"><i class="fas fa-stream"></i>Distribución</a>
-            </li>
-            <li>
-                <a href="<?= base_url ?>views/products/ecommerce.html"><i class="fas fa-laptop"></i>Ecommerce</a>
-            </li>
+          
             <li>
                 <a href="<?= base_url ?>views/products/particulares.html"><i class="fas fa-box-open"></i>Particulares</a>
             </li>
@@ -135,15 +117,14 @@
             <li>
                 <a href="<?= base_url ?>views/products/productos.html"><i class="fas fa-shopping-bag"></i>Productos</a>
             </li>
-            <li>
-                <a href="<?= base_url ?>views/company/nosotros.html"><i class="fas fa-envelope"></i>#Express</a>
-            </li>
+          
             <li>
                 <a href="<?= base_url ?>views/company/contacto.html"><i class="fas fa-phone"></i>Contacto</a>
             </li>
             <li>
-                <a href="<?= base_url ?>views/login/loginUs.php"><i class="fas fa-users"></i>Login</a>
+                <a href="<?=base_url?>control/usuarioControllers.php?usuario&accion=getData"><i class="fas fa-phone"></i>Mis datos</a>
             </li>
+           
 
         </ul>
 

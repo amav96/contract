@@ -1,11 +1,12 @@
 <?php
 session_start();
-if (isset($_SESSION["tipo"])) {
-    if ($_SESSION["tipo"]["tipo"] == "admin") {
-        header("Location: ../../views/adm/panel.php");
-    } else {
-    }
-}
+
+ if (isset($_SESSION["tipo"])) {
+     if ($_SESSION["tipo"]["tipo"] == "admin") {
+         header("Location: ../../views/adm/panel.php");
+     } else {
+     }
+ }
 
 ?>
 
@@ -39,9 +40,9 @@ if (isset($_SESSION["tipo"])) {
      <div class="fondoimagen" id="fondoimagen">
         
        
-        <img class="logo-main" id="logodos" src="estilos/imagenes/logo2.png" alt="">
+        <img class="logo-main" id="logodos" src="../../estilos/imagenes/logo2.png" alt="">
     
-        <img class="logo-main-dos" id="logouno" src="estilos/imagenes/logo.png" alt="">
+        <img class="logo-main-dos" id="logouno" src="../../estilos/imagenes/logo.png" alt="">
     
     </div>
 

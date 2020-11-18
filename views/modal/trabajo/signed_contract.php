@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Firma, aclaración y documento</h5>
+        <h5 class="modal-title">Firma</h5>
         <button type="button" class="close">
           <span id="salirEquisFirmar" data-dismiss="modal" aria-hidden="true">&times;</span>
         </button>
@@ -21,7 +21,7 @@
              
               <div class="form-group">
                 <label class="text-left" for="">Documento</label>
-                <input style="background-color:#D6EAF8 ;border:0;" type="text" class="form-control" id="documentoFirmar" value="<?=$cliente->id_number?>" placeholder="Documento">
+                <input readonly style="background-color:#D6EAF8 ;border:0;" type="text" class="form-control" id="documentoFirmar" value="<?=$cliente->id_number?>" placeholder="Documento">
                 <label for="" id="errorDocumento"></label>
               </div>
               

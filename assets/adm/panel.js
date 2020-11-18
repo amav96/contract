@@ -242,6 +242,10 @@ $(document).ready(function () {
   // este es el que muestar el generaaaal, tienes que ver donde lo pones
 });
 
+
+
+
+
 function MostrarBuscadorPorRecoYFecha() {
   $("#BuscadorFecha").click(function () {
     $("#container-busqueda-general").hide();

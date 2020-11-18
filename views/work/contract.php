@@ -10,13 +10,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 
 
+<?php  if($cliente->status_process === '' || $cliente->status_process === null){ ?>
+
+    <h5 class="text-center">Usuario <?=$cliente->first_name.' '.$cliente->last_name?> en proceso de procesamiento de datos. </h5>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+ <?php } else { ?>
+
+
     <?php if($cliente->status_process === 'waiting_for_discharge' || $cliente->status_process === 'active'){ ?>
 
        <div class="container" >
-       <h3 class="text-center">Contrato listo</h3>
+       <h3 style="margin:5rem auto 1rem auto;" class="text-center">Contrato listo</h3>
            <div style="display:flex;justify-content:center;" class="boton">
           
-         <button style="margin:2rem auto;" id="donwload" name="donwload" class="text-center btn btn-danger"> Descargar </button>
+         <button style="margin:1rem auto 2rem auto;" id="donwload" name="donwload" class="text-center btn btn-danger"> Descargar </button>
          </div>
          </div>
          
@@ -134,7 +149,7 @@
                  <?php if($cliente->status_process === 'waiting_for_discharge' || $cliente->status_process === 'active'){ ?>
 
                     <p style="text-align: justify;">
-                        CBU:<?=$cliente->cbu?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BANCO:<?=$cliente->banco?>
+                        CBU: <?=$cliente->cbu?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BANCO: <?=$cliente->banco?>
                       </p>
                 <?php }?>
 
@@ -169,9 +184,19 @@
                     <?php }?>
 
             <?php if($cliente->status_process === 'waiting_for_discharge' || $cliente->status_process === 'active'){ ?>
-                <img width="280" height="200" src="<?=base_url.$cliente->img_signed?>" alt="">
                 
-                <?php }?>
+               
+                
+                <img width="280" height="200" src="<?=base_url?>resources/firmas/<?=$cliente->img_signed?>" alt="">
+                <p>
+                <strong> <h5> Firma </h5></strong>
+                <span><strong>Aclaración :</strong> <?=$cliente->first_name.' '.$cliente->last_name?> </span> <span><strong>Documento :</strong> <?=$cliente->id_number?> </span>
+                </p>
+                
+                <?php }
+
+                }?>
+        
         
     </div>
 </div>
