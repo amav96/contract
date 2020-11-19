@@ -19,6 +19,9 @@ class Usuarios{
     private $cbu;
     private $banco;
     private $idenviado;
+    private $status;
+    private $horario_disponible;
+    
     private $db;
 
 
@@ -77,6 +80,13 @@ class Usuarios{
     public function getIdenviado(){
         return $this->idenviado;
     }
+    public function getStatus(){
+        return $this->status;
+    }
+
+    public function getHorario_disponible(){
+        return $this->horario_disponible;
+    }
 
     public function setUsername($username){
         $this->username=$this->db->real_escape_string($username);
@@ -134,6 +144,17 @@ class Usuarios{
         $this->idenviado=$this->db->real_escape_string($idenviado);
     }
 
+    public function setStatus($status){
+        $this->status=$this->db->real_escape_string($status);
+    }
+
+    public function setHorario_disponible($horario_disponible){
+        $this->horario_disponible=$horario_disponible;
+    }
+
+
+
+
   
     public function gettAllReclute(){
         
@@ -164,6 +185,7 @@ class Usuarios{
     public function settersSigned(){
 
         if($_REQUEST){
+
             
               $result = false;
               $base_to_php = explode(',', $this->getImagenFirma());
@@ -193,8 +215,10 @@ class Usuarios{
         $nameImg = 'contrato'.$this->getHorarioSolicitud().$this->getNro_dni().'.png'; 
 
         $result = false;
-        $sql = "UPDATE reclute set mail='{$this->getEmail()}',phone_number='{$this->getTelefono_celular()}',cbu='{$this->getCbu()}',banco='{$this->getBanco()}',status_process='signedcontract',img_signed='$nameImg',signed_date='{$this->getHorarioSolicitud()}',cuit='{$this->getCuit()}',vehicle_brand='{$this->getVehiculoMarca()}',vehicle_model='{$this->getCuit()}',patent='{$this->getPatente()}' where id_number='{$this->getNro_dni()}'";
-      
+       
+        $sql= "UPDATE reclute set status='contrato-firmado', mail='{$this->getEmail()}',phone_number='{$this->getTelefono_celular()}',cbu='{$this->getCbu()}',banco='{$this->getBanco()}',status_process='signedcontract',img_signed='$nameImg',signed_date='{$this->getHorarioSolicitud()}',cuit='{$this->getCuit()}',vehicle_brand='{$this->getVehiculoMarca()}',vehicle_model='{$this->getCuit()}',patent='{$this->getPatente()}',name_ecommerce='{$this->getNombre()}',customer_service_hours='{$this->getHorario_disponible()}' where id_number='{$this->getNro_dni()}'";
+       
+        
         $actualizar = $this->db->query($sql); 
        
         if($actualizar){
@@ -207,59 +231,73 @@ class Usuarios{
 
         }
         return $result;
-        
-
-        // if($actualizar){
-
-        // }
-       
+     
 
     }
 
-    public function addUser(){
+    public function setStatusUser(){
 
         $result = false;
-        $sql ="INSERT INTO recolectores (id,tipo,nombre_recolector,email,id_reco) values 
-        ('{$this->getUsername()}','{$this->getTipo()}','{$this->getNombre()}','{$this->getEmail()}','{$this->getIdenviado()}')";
-        
-         $ejecutar = $this->db->query($sql);
 
-         if($ejecutar){
+        if(isset($_POST["status_reco"]) && $_POST["status_reco"] === 'active'){
+
+            $sql ="INSERT INTO recolectores (id,tipo,nombre_recolector,email,id_reclute,status,momento) values 
+            ('{$this->getUsername()}','{$this->getTipo()}','{$this->getNombre()}','{$this->getEmail()}','{$this->getIdenviado()}','{$this->getStatus()}',NOW())";
             
             
-            if($this->activateStatus()){
-              
-                $result = 'set-update';
-            }else {
+             
+             $ejecutar = $this->db->query($sql);
+    
+             if($ejecutar){
                 
-                $result= 'no-update';
-            }
-         }else {
+                
+                if($this->setStatusReclute()){
+                  
+                    $result = 'set-update';
+                }else {
+                    
+                    $result= 'no-update';
+                }
+             }else {
+    
+                
+                 $result =  'exist-id';
+             }
+             
+        } if(isset($_POST["status_reco"]) && $_POST["status_reco"] === 'down' ||  $_POST["status_reco"] === 'activeExist'){
 
+            $sql = "UPDATE recolectores set status='{$this->getStatus()}' where id_reclute='{$this->getIdenviado()}'";
             
-             $result =  'exist-id';
-         }
+            $ejecutar = $this->db->query($sql);
+            if($ejecutar){
+                
+                
+                if($this->setStatusReclute()){
+                  
+                    $result = 'set-update';
+                }else {
+                    
+                    $result= 'no-update';
+                }
+             }else {
+    
+                
+                 $result =  'exist-id';
+             }
+             
+
+        }
+    
          return $result;
     }
 
-    private function activateStatus(){
-        $result= false;
-        $sql = "UPDATE reclute set status_process='active' where id='{$this->getIdenviado()}'";
-      
-        $ejecutar = $this->db->query($sql);
-        if($ejecutar){
-            $result= true;
-        }else {
-            $result= false;
-        }
-        return $result;
-    }
 
-    public function setStatus(){
+    public function setStatusReclute(){
         $result = false;
-        $sql = "UPDATE reclute set status_process='{$this->getTipo()}' where id='{$this->getIdenviado()}'";
-        
+        $sql = "UPDATE reclute set status_process='{$this->getStatus()}' where id='{$this->getIdenviado()}'";
+       
         $status = $this->db->query($sql);
+
         if($status){
             $result = true;
 

@@ -42,11 +42,11 @@ function insertoPrimerRegistroDeSolicitante($documento)
   if (isset($_POST['document'])) {
     $query = "INSERT INTO reclute (first_name,last_name,employee_age,knowledge_path,
         dni,id_number,monotributo,infomonotributo,home_address,postal_code,
-        location,province,mail,phone_number,vehicle_type, available_schedules,status,type_request,characteristic,status_process)
+        location,province,mail,phone_number,vehicle_type, available_schedules,status,type_request,characteristic,status_process,img_front,momento)
          values ('$nombre','$apellido','$employee_age','$viaConocimiento',
          '$documento','$numeroDocu','$monotributo','$infoMonotributo',
          '$direccion','$codigoPostal','$localidad','$provincia','$email',
-         '$nroMovil','$tipoVehiculo','$horariosDisponibles', 'Nuevo', '$tipo','$caracteristica','registered')";
+         '$nroMovil','$tipoVehiculo','$horariosDisponibles', 'Nuevo', '$tipo','$caracteristica','registered','$nroDocumento.persona.png',NOW())";
 
     $result = mysqli_query($connection, $query);
 
@@ -106,7 +106,8 @@ function insertoRegistrosCompleto($idid)
      start_date_three='$fechaInicioEmpleoTres',
      finish_date_three='$fechaFinEmpleoTres',
      antecedents_or_restrictions='$antecedentesRestricciones',
-     observations='$observaciones', status='Completada', type_request='$tipo' WHERE id_number='$idid';";
+     status_process='registered',
+     observations='$observaciones', status='Completada', type_request='$tipo',momento=NOW() WHERE id_number='$idid';";
   }
   $result = mysqli_query($connection, $query);
 

@@ -1,0 +1,124 @@
+.responsivewhat{
+
+    width:30px;
+    height:30px;
+    position:relative;
+    top:30px;
+    left:480px;
+}
+.responsiveface{
+
+    width:30px;
+    height:30px;
+    top:1px;
+    position:relative;
+    left:515px;
+}
+@media(min-width:320px){
+    .responsivewhat{
+
+        width:30px;
+        height:30px;
+        position:relative;
+        top:30px;
+        left:133px;
+    }
+    .responsiveface{
+    
+        width:30px;
+        height:30px;
+        top:1px;
+        position:relative;
+        left:186px;
+    }
+}
+@media(min-width:411px){
+    .responsivewhat{
+
+        width:30px;
+        height:30px;
+        position:relative;
+        top:30px;
+        left:149px;
+    }
+    .responsiveface{
+    
+        width:30px;
+        height:30px;
+        top:1px;
+        position:relative;
+        left:199px;
+    }
+}
+@media(min-width:768px){
+    .responsivewhat{
+
+        width:30px;
+        height:30px;
+        position:relative;
+        top:30px;
+        left:440px;
+    }
+    .responsiveface{
+    
+        width:30px;
+        height:30px;
+        top:1px;
+        position:relative;
+        left:490px;
+    }
+}
+@media(min-width:1024px){
+    .responsivewhat{
+
+        width:30px;
+        height:30px;
+        position:relative;
+        top:30px;
+        left:450px;
+    }
+    .responsiveface{
+    
+        width:30px;
+        height:30px;
+        top:1px;
+        position:relative;
+        left:550px;
+    }
+}
+@media(min-width:1280px){
+    .responsivewhat{
+
+        width:30px;
+        height:30px;
+        position:relative;
+        top:30px;
+        left:580px;
+    }
+    .responsiveface{
+    
+        width:30px;
+        height:30px;
+        top:1px;
+        position:relative;
+        left:620px;
+    }
+}
+@media(min-width:1440px){
+    .responsivewhat{
+
+        width:30px;
+        height:30px;
+        position:relative;
+        top:30px;
+        left:660px;
+    }
+    .responsiveface{
+    
+        width:30px;
+        height:30px;
+        top:1px;
+        position:relative;
+        left:711px;
+    }
+}

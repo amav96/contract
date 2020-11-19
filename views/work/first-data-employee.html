@@ -202,11 +202,7 @@
                     <div class="field">
                         <div class="label">
                             Telefono</div>
-                            <select class="caracteristica" id="caracteristica">
-                                <option value="+54">+54</option>
-                                <option value="+598">+598</option>
-
-                            </select>
+                           
                         <input type="text" id="telefono_celular" >
                     </div>
                     <div class="field">
@@ -342,9 +338,9 @@
                            <input type="file" id="comprobantedomicilio" > 
                     </div>
                     <div class="field">
-                        <div class="label">
-                            Cuenta Bancaria CBU</div>
-                           <input type="text" id="cbu" placeholder="Aqui te depositaremos"> 
+                        <div class="label" style="font-size: 0.7rem;">
+                            Foto frontal Cara</div>
+                        <input type="file" id="persona" >
                     </div>
                     
                     <div class="field">
@@ -368,7 +364,7 @@
                         </select>
                     </div>
                    
-                        <input type="hidden" id="tipo" value="Empleado" readonly>
+                        <input type="hidden" id="tipo" value="empleado" readonly>
                         <input type="hidden" id="horario_solicitud" name="horario_solicitud" readonly>
                         <span style="color: black;" id="procesando" class="procesando">Enviando...</span>
                     

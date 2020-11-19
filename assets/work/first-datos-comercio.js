@@ -114,7 +114,7 @@ $(document).ready(function () {
    datos.append("codigoPostal", $("#codigoPostal").val());
    datos.append("dni", $("#dni").val());
    datos.append("monotributo", $("#monotributo").val());
-   datos.append("caracteristica", $("#caracteristica").val());
+   
    datos.append("tipo_vehiculo", $("#tipo_vehiculo").val());
    datos.append("horario_disponible", $("#horario_disponible").val());
    datos.append("telefono_celular", $("#telefono_celular").val());
@@ -334,12 +334,23 @@ function validarFirstFormRequest() {
       return false
     }
     var elemento = document.getElementById("telefono_celular").value
-    if (elemento == "") {
+    if (elemento.length <10 ) {
       $("#procesando").hide();
       Swal.fire({
         icon: 'error',
         title: 'Ya casi..',
-        text: 'Debes indicarnos tu numero de telefono para contactarte!'
+        text: 'El telefono debe tener minimo 10!'
+      })
+      return false
+    }
+    var elemento = document.getElementById("telefono_celular").value
+    var celularPrimeros = elemento.substr(0,2)
+    if (celularPrimeros != '54' ) {
+      $("#procesando").hide();
+      Swal.fire({
+        icon: 'error',
+        title: 'Ya casi..',
+        text: 'El telefono debe empezar con (54). Ejemplo : 54 1177568412!'
       })
       return false
     }

@@ -1,6 +1,9 @@
 $(document).ready(function(){
    $('#loginform').submit(function(e){
    e.preventDefault();
+
+ 
+   
    $.ajax({
       type: "POST",
       url: '../javascriptvalidacion/validacionlogin.php',

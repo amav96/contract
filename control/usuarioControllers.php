@@ -74,6 +74,7 @@ if(isset($_GET["usuario"])  &&  isset($_GET["accion"])){
 
             if($_POST){
 
+              
                 $identificacion = !empty($_POST['documento']) ? $_POST["documento"] : false;
                 $fecha = !empty($_POST["fecha"]) ? $_POST["fecha"] : false;
                 $key = !empty($_POST["key"]) ? $_POST["key"] : false;
@@ -87,9 +88,12 @@ if(isset($_GET["usuario"])  &&  isset($_GET["accion"])){
                 $telefono = !empty($_POST["telefono"]) ? $_POST["telefono"] : false;
                 $cbu = !empty($_POST["cbu"]) ? $_POST["cbu"] : false;
                 $banco = !empty($_POST["banco"]) ? $_POST["banco"] : false;
+                $horarios =isset($_POST["horarios"])? $_POST["horarios"] : false;
+                $nombre_comercio = isset($_POST["nombre_comercio"])?$_POST["nombre_comercio"] : false;
 
-                if($identificacion && $fecha && $img && $cuit && $domicilio && $marca && $modelo && $patente
-                && $email && $telefono && $cbu && $banco){
+
+                if($identificacion && $fecha && $img && $cuit && $domicilio || $marca || $modelo || $patente
+                || $email ||  $telefono && $cbu && $banco){
 
                 
                 $contrato = new Usuarios();
@@ -105,6 +109,8 @@ if(isset($_GET["usuario"])  &&  isset($_GET["accion"])){
                 $contrato->setTelefono_celular($telefono);
                 $contrato->setCbu($cbu);
                 $contrato->setBanco($banco);
+                isset($_POST["horarios"])? $contrato->setHorario_disponible($horarios)  : true;
+                isset($_POST["nombre_comercio"])? $contrato->setNombre($nombre_comercio)  : true;
                 $contrato = $contrato->settersSigned();
                 
 
@@ -231,59 +237,99 @@ if(isset($_GET["usuario"])  &&  isset($_GET["accion"])){
         public function activateUser(){
          
             if($_POST){
+               
+
                 $id = isset($_POST["id"])?$_POST["id"] : false;
                 $nombre = isset($_POST["nombre"])?$_POST["nombre"] : false;
                 $correo = isset($_POST["correo"])?$_POST["correo"] : false;
                 $tipo = isset($_POST["tipo"])?$_POST["tipo"] : false;
-                $id_ingreso = isset($_POST["id_ingreso"])?$_POST["id_ingreso"] : false;
+                $id_ingreso = isset($_POST["id_ingreso"])? $_POST["id_ingreso"] : false;
+                $status = isset($_POST["status_reco"])?$_POST["status_reco"] : false ;
 
-                if($id && $nombre && $correo && $tipo && $id_ingreso){
 
+                if(isset($_POST["status_reco"]) && $_POST["status_reco"] === 'active'  ){
+                    if($id && $nombre && $correo && $tipo && $id_ingreso){
+
+                        $activate = new Usuarios();
+                        $activate-> setUsername($id_ingreso);
+                        $activate-> setIdenviado($id);
+                        $activate->setNombre($nombre);
+                        $activate->setEmail($correo);
+                        $activate->setTipo($tipo);
+                        $activate->setStatus($status);
+
+                        $activate = $activate->setStatusUser();
+                       
+        
+                        if($activate === 'set-update'){
+        
+                            $objeto[]=array(
+                                'result' => '1',
+                            );
+                           
+        
+                        }if($activate === 'no-update'){
+                          
+        
+                            $objeto[]=array(
+                                'result' => '2',
+                            );
+                        }
+                        if($activate === 'exist-id'){
+        
+                            $objeto[]=array(
+                                'result' => '3',
+                            );
+                           
+                        }
+                    }else {
+    
+                        $objeto[]=array(
+                            'result' => '4',
+                        );
+                    }
                     
-                    $activate = new Usuarios();
-                    $activate-> setUsername($id_ingreso);
-                    $activate-> setIdenviado($id);
-                    $activate->setNombre($nombre);
-                    $activate->setEmail($correo);
-                    $activate->setTipo($tipo);
-                    $activate = $activate->addUser();
-                   
-    
-                    if($activate === 'set-update'){
-    
-                        $objeto[]=array(
-                            'result' => '1',
-                        );
-                       
-    
-                    }if($activate === 'no-update'){
-                      
-    
-                        $objeto[]=array(
-                            'result' => '2',
-                        );
-                    }
-                    if($activate === 'exist-id'){
-    
-                        $objeto[]=array(
-                            'result' => '3',
-                        );
-                       
-                    }
-                }else {
+                } if(isset($_POST["status_reco"]) && $_POST["status_reco"] === 'down' || $_POST["status_reco"] === 'activeExist'){
 
-                    $objeto[]=array(
-                        'result' => '4',
-                    );
+                    if($id){
+
+                        $activate = new Usuarios();
+                        $activate-> setIdenviado($id);
+                        $activate->setStatus($status);
+                        $activate = $activate->setStatusUser();
+
+                        if($activate === 'set-update'){
+        
+                            $objeto[]=array(
+                                'result' => '1',
+                            );
+                           
+        
+                        }if($activate === 'no-update'){
+                          
+        
+                            $objeto[]=array(
+                                'result' => '2',
+                            );
+                        }
+                        if($activate === 'exist-id'){
+        
+                            $objeto[]=array(
+                                'result' => '3',
+                            );
+                           
+                        }
+
+
+                        
+                    }
+
+
                 }
-               
-
-                $jsonstring = json_encode($objeto);
-                echo $jsonstring;
-
 
                 
-
+                $jsonstring = json_encode($objeto);
+                echo $jsonstring;
 
             }
         }
@@ -297,9 +343,9 @@ if(isset($_GET["usuario"])  &&  isset($_GET["accion"])){
                 $id= isset($_POST["id_status"])?$_POST["id_status"] :false;
 
                 $modify = new Usuarios();
-                $modify->setTipo($status);
+                $modify->setStatus($status);
                 $modify->setIdenviado($id);
-                $modify = $modify->setStatus();
+                $modify = $modify->setStatusReclute();
 
                 if($modify){
 

@@ -33,7 +33,17 @@
                             <option value="operador">OPERADOR</option>
                             <option value="comercio">COMERCIO</option>
                             <option value="admin">ADMIN</option>
+                        </select>
 
+                    </div>
+                    <div class="d-flex flex-column bd-highlight mb-3>">
+
+                        <label for="">ALTA/BAJA</label>
+                        <select name="status_reco" id="status_reco">
+                            <option value="0">Seleccion Estado</option>
+                            <option value="active">ALTA PARA NUEVOS RECOLECTORES/COMERCIOS/CALL</option>
+                            <option value="down">BAJA</option>
+                            <option value="activeExist">ALTA PARA RECOLECTORES/COMERCIOS/CALL DADOS DE BAJA</option>
                         </select>
 
                     </div>

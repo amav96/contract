@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Enviar Contrato</h5>
+                <h5 class="modal-title">Estado de proceso</h5>
                 <button type="button" class="close">
                     <span data-dismiss="modal" aria-hidden="true">&times;</span>
                 </button>

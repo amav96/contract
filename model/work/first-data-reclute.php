@@ -39,14 +39,14 @@ function InsertarPrimerRegistro($nroDocumento,$fotodocumentofront, $fotodocument
      $codigoPostal = $_POST["codigoPostal"];
      $dni = $_POST["dni"];
      $monotributo = $_POST["monotributo"];
-     $caracteristica = $_POST["caracteristica"];
+     
      $tipo_vehiculo = $_POST["tipo_vehiculo"];
      $horario_disponible = $_POST["horario_disponible"];
      $telefono_celular = $_POST["telefono_celular"];
      
      $tipo = $_POST["tipo"];
 
-     $query="INSERT INTO reclute (first_name,last_name,mail,knowledge_path,country,province,location,home_address,postal_code,dni,monotributo,characteristic,vehicle_type,available_schedules,id_number,phone_number,type_request,status,fecha,status_process) values ('$nombre','$apellido','$email','$via_conocimiento','$pais','$provincia','$localidad','$domicilio','$codigoPostal','$dni','$monotributo','$caracteristica','$tipo_vehiculo','$horario_disponible','$nroDocumento','$telefono_celular','$tipo','Nueva','$horario_solicitud','registered')";
+     $query="INSERT INTO reclute (first_name,last_name,mail,knowledge_path,country,province,location,home_address,postal_code,dni,monotributo,vehicle_type,available_schedules,id_number,phone_number,type_request,status,fecha,status_process,img_front,momento) values ('$nombre','$apellido','$email','$via_conocimiento','$pais','$provincia','$localidad','$domicilio','$codigoPostal','$dni','$monotributo','$tipo_vehiculo','$horario_disponible','$nroDocumento','$telefono_celular','$tipo','Nueva','$horario_solicitud','registered','$nroDocumento.persona.png',NOW())";
 
      $result=mysqli_query($connection,$query);
 

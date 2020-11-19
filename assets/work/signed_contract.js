@@ -5,15 +5,21 @@ var btnAccept = document.getElementById("acepto");
 var btnDontAccept = document.getElementById("noacepto");
 var modalSignedContract = document.getElementById("firmarContrato")
 
-var cuit = document.getElementById("cuit")
+
 var domicilio = document.getElementById("domicilio")
-var marca = document.getElementById("marca")
-var modelo = document.getElementById("modelo")
-var patente = document.getElementById("patente")
-var email = document.getElementById("email")
-var telefono = document.getElementById("telefono")
-var cbu = document.getElementById("cbu")
-var banco = document.getElementById("banco")
+var email = $("#email")
+var telefono = $("#telefono")
+
+var cuit = $("#cuit")
+var marca = $("#marca")
+var modelo = $("#modelo")
+var patente = $("#patente")
+var cbu = $("#cbu")
+var banco = $("#banco")
+var horarios = $("#horarios")
+var nombre_comercio = $("#nombre_comercio")
+
+
 
 if(btnDonwload != null){
 	    btnDonwload.addEventListener("click",()=>{
@@ -27,46 +33,55 @@ if(btnDonwload != null){
 
 if(btnAccept != null){
 
-	domicilio.addEventListener("click",()=>{domicilio.removeAttribute('readonly')})
-	email.addEventListener("click",()=>{email.removeAttribute('readonly')})
-	telefono.addEventListener("click",()=>{telefono.removeAttribute('readonly')})
 
+
+
+
+	domicilio.addEventListener("click",()=>{domicilio.removeAttribute('readonly')})
+
+	$(email).on("click",function(){email.removeAttr("readonly")})
+	$(telefono).on("click",function(){telefono.removeAttr("readonly")})
 
 	btnAccept.addEventListener("click",()=>{
-		  
-		  (cuit.value === "")
-		  ?alertNegative('Debes ingresar tu numero de cuit')
-		  :(domicilio.value === "")
-		   ?alertNegative('Debes ingresar tu domicilio')
-		   :(marca.value === "")
-		 	?alertNegative('Debes ingresar la marca del auto')
-		 	:(modelo.value === "")
-		 	 ?alertNegative('Debes ingresar el modelo del auto')
-		 	 :(patente.value === "")
-		 	  ?alertNegative('Debes ingresar el nro de pantente del auto')
-			   :(email.value === "")
-				?alertNegative('Debes ingresar tu email')
-				:!(/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})/i).test(email.value)
-				 ?alertNegative('Debes ingresar un email válido, revisa cuidadosamente')
-		 	     :(telefono.value === "")
-		 		  ?alertNegative('Debes ingresar tu telefono')
-		 		  :(telefono.value.lenght < 8)
-					?alertNegative('El telefono debe tener minimo 8 digitos')
-					:(cbu.value === "")
-					 ?alertNegative('Debes ingresar el CBU')
-					  :(banco.value === "")
-					  ?alertNegative('Debes ingresar el Banco')
-					   :(banco.value.lenght> 32)
-					   ?alertNegative('El CBU debe tener minimo 32 digitos')
-					   :$("#firmarContrato").modal("show")
-					 
-		 		   
-	})
-}
 
+		if(cuit.val() === ""){alertNegative('Debes ingresar tu numero de cuit');return false; }
+		if(horarios.is(':visible')){
+			if(horarios.val() === ""){alertNegative('Debes ingresar el horario y atención al cliente');return false; }}
+		if(marca.is(':visible')){
+			if(marca.val() === ""){alertNegative('Debes ingresar la marca del auto');return false; }}
+		if(modelo.is(':visible')){
+			if(modelo.val() === ""){alertNegative('Debes ingresar el modelo del auto');return false; }}
+		if(patente.is(':visible')){
+			if(patente.val() === ""){alertNegative('Debes ingresar el nro de pantente del auto');return false;}}
+			if(nombre_comercio.is(':visible')){
+				if(nombre_comercio.val() === ""){alertNegative('Debes ingresar el nombre del comercio');return false;}}
+		if(domicilio.value === ""){alertNegative('Debes ingresar tu domicilio');return false;}
+		if(email.is(':visible')){
+			if(email.val() === ""){alertNegative('Debes ingresar tu email');return false;}
+		     if(!(/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})/i).test(email.val())){
+			  alertNegative('Debes ingresar un email válido, revisa cuidadosamente');return false;}
+		}
+		if(telefono.is(':visible')){
+			if(telefono.val() === ""){alertNegative('Debes ingresar tu telefono');return false;}
+			if(telefono.val().length < 8){alertNegative('El telefono debe tener minimo 8 digitos');return false;}
+		}
+		
+		if(cbu.val() === ""){alertNegative('Debes ingresar el CBU');return false;}
+		if(cbu.val().length<32){alertNegative('El CBU debe tener minimo 32 digitos');return false;}
+		if(banco.val() === ""){alertNegative('Debes ingresar el Banco');return false;}
+
+		 $("#firmarContrato").modal("show")
+			})
+		}
+		
+		
     $(document).on("click","#noacepto",function(){
 
-        alert("no acepto la persona jeje")
+	   
+	var urlencodedtext = '%20Hola%20estuve%20mirando%20el%20contrato%20y%20no%20estoy%20conforme%20con%20el%20mismo'
+
+      window.open('https:api.whatsapp.com/send?phone=541138622964&text=' + urlencodedtext, '_blank');
+		
     })
 
 
@@ -144,7 +159,8 @@ if(btnAccept != null){
 						  var telefono = $("#telefono").val()
 						  var cbu = $("#cbu").val()
 						  var banco = $("#banco").val()
-					
+						  var horarios = $("#horarios").val()
+					      var nombre_comercio = $("#nombre_comercio").val()
 			
 				 Swal.fire({
 				 	title: 'Estas por firmar el contrato. Revisaste todos los datos cuidadosamente?',
@@ -164,7 +180,7 @@ if(btnAccept != null){
 				 		$.ajax({
 				 			url:"../control/usuarioControllers.php?usuario&accion=signedContract",
 				 			type: "post",
-							 data: {cuit,domicilio,marca,modelo,patente,email,telefono,fecha,key,dataUrl, documento,cbu,banco},
+							 data: {cuit,domicilio,marca,modelo,patente,email,telefono,fecha,key,dataUrl, documento,cbu,banco,horarios,nombre_comercio},
 							 beforedSend: function(){
 
 							 },}).done(function(response){
@@ -176,8 +192,8 @@ if(btnAccept != null){
 					
 									var url = location.href ='http://localhost/contract/control/usuarioControllers.php?usuario&accion=showContract&numerodoc=' + documento;
 
-									console.log(url)
-									return
+								
+									return true
 
 									
 									
@@ -189,22 +205,7 @@ if(btnAccept != null){
 
 
 				 	// 			$("#subspinner-firmar").hide()
-								
-				 	// 			let reciboExistenciaFirma = JSON.parse(response)
-				 	//  if(reciboExistenciaFirma[0].result === true){
-						 
-					// 	alertPositive('Contrato firmado con exito!')
-				 	// 	// si no existe la firma insertarda y si se inserto la nueva firma correctamente...
-				 	// 	//  ingreso la data de la recuperacion en la base de datos
-				
-				 	// }if(reciboExistenciaFirma[0].result === 'failInsert'){
-				 	// 	  clearCanvas()
-				 	// 	  alertNegative('Error CODE DB'); return false;
-				 	// }
-				 	// if(reciboExistenciaFirma[0].result === 'existeFirma'){
-				    // 		clearCanvas()
-				    // 		alertNegative('La firma ingresada ya existe!'); return false;
-				 	//            }
+					
 				 		
 				 		
 				 	}

@@ -19,7 +19,7 @@ $(document).ready(function(){
      })
     $('#recolectores').click(function (){
     
-        location.href = 'equipo/gestionar';
+        location.href = 'login/loginrecolector.php';
     })
     
      $('#red').click(function (){

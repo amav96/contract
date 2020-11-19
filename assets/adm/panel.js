@@ -45,7 +45,8 @@ $(document).ready(function () {
                
                     <div class="body-despliegue" id="body-despliegue-${recorroDatos.id} " tomoDato="${recorroDatos.id}" >
                     ${recorroDatos.nombre} ha enviado una solicitud para ${recorroDatos.tipo}
-                    <span class="status-noti">${recorroDatos.estadoNotificacion}</span>
+                    <span class="status-noti">${recorroDatos.estadoNotificacion}</span><br>
+                    <span class="status-noti">${recorroDatos.momento}</span>
                   </div>
                   <hr>
                   `;
@@ -309,9 +310,8 @@ function MostrarCuerpoNotificacion() {
         let template = `<h4>Datos del solicitante - ${DatosDelSolicitante[0].nombre} ${DatosDelSolicitante[0].apellido} - ${DatosDelSolicitante[0].tipoDeSolicitud} </h4>`;
         console.log(DatosDelSolicitante[0].tipoDeSolicitud);
 
-        if (DatosDelSolicitante[0].tipoDeSolicitud === "Empleado-Completado") {
-          console.log("es un empleado o recolector");
-
+        if (DatosDelSolicitante[0].tipoDeSolicitud === "empleado-completado") {
+     
           DatosDelSolicitante.forEach((recorroDatos) => {
             template += `
     
@@ -537,15 +537,25 @@ function MostrarCuerpoNotificacion() {
        ${recorroDatos.cbu} 
      </div>
      </div>
+     <div class="mini-box">
+     <div class="dato-titulo">
+   Gestion Usuario/Contrato
+     </div>
+     <div class="dato-contenido">
+       <a href="../../../contract/views/adm/registrados.php"></a>
+     </div>
+     </div>
+
+     
      
      `;
           });
         }
         if (
-          DatosDelSolicitante[0].tipoDeSolicitud === "Recolector" ||
-          DatosDelSolicitante[0].tipoDeSolicitud === "Call Center" ||
-          DatosDelSolicitante[0].tipoDeSolicitud === "Comercio" ||
-          DatosDelSolicitante[0].tipoDeSolicitud === "Empleado"
+          DatosDelSolicitante[0].tipoDeSolicitud === "recolector" ||
+          DatosDelSolicitante[0].tipoDeSolicitud === "call" ||
+          DatosDelSolicitante[0].tipoDeSolicitud === "comercio" ||
+          DatosDelSolicitante[0].tipoDeSolicitud === "empleado"
         ) {
           DatosDelSolicitante.forEach((recorroDatos) => {
             template += `
@@ -696,6 +706,14 @@ function MostrarCuerpoNotificacion() {
         ${recorroDatos.cbu} 
       </div>
       </div>
+      <div class="mini-box">
+     <div class="dato-titulo">
+   Gestion Usuario/Contrato
+     </div>
+     <div class="dato-contenido">
+       <a href="../../../contract/views/adm/registrados.php">Gestión</a>
+     </div>
+     </div>
       
       `;
           });

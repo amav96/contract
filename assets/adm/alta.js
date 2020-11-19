@@ -55,6 +55,7 @@ $(document).on("click","#send-data-alta",function(){
     var correo = $("#correo_recolector").val()
     var tipo = $("#tipo").val();
     var id_ingreso = $("#id_ingreso").val();
+    var status_reco = $("#status_reco").val();
 
 
    
@@ -63,11 +64,12 @@ else if (nombre === ''){alertNegative("Debes ingresar el nombre de recolector");
 else if(correo === ''){alertNegative("Debes ingresar el correo del recolector");return false}
 else if(tipo === '0'){alertNegative("Debes escoger el tipo");return false}
 else if(id_ingreso === ''){alertNegative("Debes ingresar el id del recolector");return false}
+else if(status_reco === '0'){alertNegative("Debes escoger el estado");return false}
 else {
      $.ajax({
               url:"../../control/usuarioControllers.php?usuario&accion=activateUser",
               type:"POST",
-              data:{id,nombre,correo,tipo,id_ingreso},
+              data:{id,nombre,correo,tipo,id_ingreso,status_reco},
               beforeSend:function(){
               },
           }).done(function(response){
@@ -76,7 +78,10 @@ else {
                if(objeto[0].result === '1'){
               
                  alertPositive("Se guardo exitosamente");
+                 $("#id_ingreso").val("")
+                 $("#status_reco").prop("selectedIndex", 0);
                  $("#modalAlta").modal("hide") 
+                
                  showAll()
 
                }if(objeto[0].result === '2'){
@@ -95,7 +100,7 @@ else {
        
 })
 
-$(document).on("click","#enviarContrato",function(){
+$(document).on("click","#estados",function(){
 
   var guia = this.parentElement
    var id = $(guia).attr('guia')
@@ -103,6 +108,17 @@ $(document).on("click","#enviarContrato",function(){
    $("#modalStatus").modal("show")
 
 })
+
+$(document).on("click","#sendcontrato",function(){
+
+  var guiacontrato = this.parentElement
+   var idcontrato = $(guiacontrato).attr('guiacontrato')
+   $("#id_status").val(idcontrato)
+   $("#modalStatus").modal("show")
+
+})
+
+
 
 $(document).on("click","#send-data-status",function(){
 var estado = $("#status").val()
@@ -127,6 +143,7 @@ var id_status =  $("#id_status").val()
       
       if(object[0].result === '1'){
 
+        $("#status").prop("selectedIndex", 0);
         showAll();
         $("#modalStatus").modal("hide")
 
@@ -155,11 +172,12 @@ var id_status =  $("#id_status").val()
             html+='<table class="table table-responsive">';
             html+=' <thead>';
             html+='<tr>';
-            html+='<th>Contrato<th>';
+            html+='<th>Estado Contrato<th>';
             html+='<th>Contrato<th>';
             html+='<th>Acción<th>';
             
             html+='<th>Estado de proceso <th>';
+            html+='<th>Accion Usuario <th>';
             html+='<th>Tel Movil <th>';
             html+='<th>ID<th>';
             html+='<th>Nombre <th>';
@@ -219,15 +237,17 @@ var id_status =  $("#id_status").val()
                     //td contrato 1
 
                     (val.status_process === 'registered')
-                    ?html+='<td guia="'+val.id+'"><button style="font-size:14px;" id="enviarContrato" class="btn btn-warning">Estados</button><td>'
+                    ?html+='<td guia="'+val.id+'"><button style="font-size:14px;" id="estados" class="btn btn-warning">Estados</button><td>'
                     :(val.status_process === 'signcontract')
                     ?html+='<td>Esperando Firma<td>'
                     :(val.status_process === 'signedcontract')
                     ?html+='<td>Contrato firmado<td>'
-                    :(val.status_process === 'doesNotQualify')
-                    ?html+='<td guia="'+val.id+'"><button style="font-size:14px;" id="enviarContrato" class="btn btn-warning">Estados</button><td>'
-                    :html+='<td>Procesando<td>'
-                  
+                    :(val.status_process === 'doesNotQualify' || val.status_process === 'down')
+                    ?html+='<td guia="'+val.id+'"><button style="font-size:14px;" id="estados" class="btn btn-warning">Estados</button><td>'
+                    :(val.status_process === 'active' || val.status_process === 'activeExist')
+                    ?html+='<td>Firmado<td>'
+                    :html+='<td>Procesando<td>';
+                    
                     //td contrato 2
                                         
                     html+='<td><a target="_blank" href="http://localhost/contract/control/usuarioControllers.php?usuario&accion=showContract&numerodoc=' +val.nroDoc+'"><button style="font-size:13px;" class="btn btn-danger">Ver contrato</button></a><td>';
@@ -237,37 +257,46 @@ var id_status =  $("#id_status").val()
                     ?html+='<td>Esperando revisión<td>'
                     :(val.status_process === 'signcontract')
                     ?html+='<td>Esperando firmar contrato<td>'
-                    :(val.status_process === 'signedcontract' || val.status_process === 'active')
+                    :(val.status_process === 'signedcontract' || val.status_process === 'active' || val.status_process === 'down' || val.status_process === 'activeExist')
                     ?html+='<td guia="'+val.id+'" nombre="'+ val.nombre + ' ' +val.apellido+'" correo="' +val.correo +'"  ><button style="font-size:14px;" id="alta" class="btn btn-success">Alta/baja</button><td>'
                     :(val.status_process === 'doesNotQualify')
                     ?html+='<td>No Califica<td>'
-                    :html+='<td>Procesando<td>'
+                    :html+='<td>Procesando<td>';
                     
         
 
-                    //status proceso
+                    // td status proceso
 
                     (val.status_process === 'registered')
-                    ?html+='<td>Espera primera revisión<td>'
+                    ?html+='<td>Espera primera revisión <td>'
                     :(val.status_process === 'signcontract')
-                    ?html+='<td>Esperando firmar contrato<td>'
+                    ?html+='<td>Esperando firmar contrato <td>'
                     :(val.status_process === 'signedcontract')
-                    ?html+='<td>Contrato firmado<td>'
-                    :(val.status_process === 'active')
+                    ?html+='<td>Contrato firmado <td>'
+                    :(val.status_process === 'active' || val.status_process === 'activeExist')
                     ?html+='<td>Activo<td>'
                     :(val.status_process === 'doesNotQualify')
-                    ?html+='<td>No califica<td>'
-                    :html+='<td>Procesando<td>'
+                    ?html+='<td>No califica <td>'
+                    :(val.status_process === 'down')
+                    ?html+='<td>Baja<td>'
+                    :true;
+                    
+                    //td accion usuario
+                 
+                    (val.status_process === 'registered' || val.status_process === 'doesNotQualify' || val.status_process === 'down')
+                    ?html+='<td guiacontrato="'+val.id +'" > <a id="sendcontrato" target="_blank" href="https:api.whatsapp.com/send?phone='+val.telMovil + '&text=Te%20invitamos%20a%20completar%20tu%20*alta*%20firmando%20este%20*contrato*%20192.168.8.112/contract/control/usuarioControllers.php?usuario%26accion=showContract%26numerodoc='+val.nroDoc +'"><button class="btn btn-success">Enviar Contrato</button></a><td>'
+                    :(val.status_process === 'active' || val.status_process === 'activeExist')
+                    ?html+='<td guiacontrato="'+val.id +'"  ><a target="_blank" href="https:api.whatsapp.com/send?phone='+val.telMovil + '&text=Hola%20ya%20estas%20activo%20para%20trabajar%20con%20nosotros!"><button class="btn btn-success">Aviso activo</button></a><td>'
+                    :(val.status_process === 'signcontract')
+                    ?html+='<td guiacontrato="'+val.id +'" ><a target="_blank" href="https:api.whatsapp.com/send?phone='+val.telMovil + '&text=Te%20hemos%20enviado%20el%20contrato.%20ya%20estas%20listo?"><button class="btn btn-success">Contrato Enviado</button></a><td>'
+                    :(val.status_process === 'signedcontract')
+                    ?html+='<td guiacontrato="'+val.id +'"  ><a target="_blank" href="https:api.whatsapp.com/send?phone='+val.telMovil + '&text=En%20breve%20estaras%20activo%20para%20trabajar"><button class="btn btn-success">Pronto Activo</button></a><td>'
+                    :html+='<td guiacontrato="'+val.id +'"  >'+val.telMovil+'<td>';
 
-                    //td tel movil
-
-                    if(val.status_process === 'registered' || val.status_process === 'doesNotQualify'){
-                      html+='<td> <a target="_blank" href="https:api.whatsapp.com/send?phone='+val.telMovil + '&text=Te%20invitamos%20a%20completar%20tu%20*alta*%20firmando%20este%20*contrato*%20192.168.8.112/express/"><button class="btn btn-success">Enviar Contrato</button></a><td>';
-                    }else{
-                      html+='<td><a target="_blank" href="https:api.whatsapp.com/send?phone='+val.telMovil + '&text=Te%20invitamos%20a%20completar%20tu%20*alta*%20firmando%20este%20*contrato*%20192.168.8.112/express/">'+val.telMovil+'</a><td>';
-                    }
+                   
 
                     // --------------
+                    html+='<td>'+val.telMovil+ '<td>';
                     html+='<td>'+val.id + '<td>';
                     html+='<td >'+val.nombre + '<td>';
                     html+='<td>'+val.apellido + '<td>';
