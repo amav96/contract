@@ -366,6 +366,10 @@ if(isset($_GET["usuario"])  &&  isset($_GET["accion"])){
 
         }
 
+        public function credencial(){
+            print_r($_POST);
+        }
+
    }
 
 

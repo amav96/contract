@@ -51,14 +51,32 @@ require_once('../../vistas/include/panelrecolector/superior_recolector.php') ?>
 $("#getCre").click(function(){
 
 
-    if(("#usuario-credencial").val() === ''){
-        
+    if($("#usuario-credencial").val() === ''){
+        alert("no hay id")
+    }else{
+
+        var usuario = $("#usuario-credencial").val()
+  
 
         $.ajax({
-            url:"",
+            url:"../../control/usuarioControllers.php?usuario&accion=credencial",
             type:"POST",
-            data:{},
+            data:{usuario},
             beforeSend:function(){
 
             }
         }).done(function(response){
+            console.log(response)
+        })
+    }
+
+   
+})
+
+ </script>
+
+
+
+
+
+  <?php require_once('../../vistas/include/panelrecolector/inferior_recolector.php')  ?>
