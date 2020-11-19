@@ -10,9 +10,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 
 
-<?php  if($cliente->status_process === '' || $cliente->status_process === null){ ?>
 
-    <h5 class="text-center">Usuario <?=$cliente->first_name.' '.$cliente->last_name?> en proceso de procesamiento de datos. </h5>
+<?php  if($cliente->status_process === '' || $cliente->status_process === null || $cliente->status_process === 'registered' || $cliente->status_process === 'doesNotQualify'){ ?>
+
+    <h5 class="text-center">Usuario <?=$cliente->first_name.' '.$cliente->last_name?> en proceso de alta. </h5>
     <br>
     <br>
     <br>
@@ -25,13 +26,13 @@
  <?php } else { ?>
 
 
-    <?php if($cliente->status_process === 'waiting_for_discharge' || $cliente->status_process === 'active'){ ?>
+    <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active'){ ?>
 
        <div class="container" >
        <h3 style="margin:5rem auto 1rem auto;" class="text-center">Contrato listo</h3>
            <div style="display:flex;justify-content:center;" class="boton">
           
-         <button style="margin:1rem auto 2rem auto;" id="donwload" name="donwload" class="text-center btn btn-danger"> Descargar </button>
+         <button style="margin:1rem auto 1rem auto;" id="donwload" name="donwload" class="text-center btn btn-danger"> Descargar </button>
          </div>
          </div>
          
@@ -51,12 +52,12 @@
             <p style="text-align: justify;"> Las partes independientes , Express Metropolitana de Servicios SRL Cuit 30-70944102-3 y el Sr
 
             <!-- Si la solicitud ya esta firmada -->
-        <?php if($cliente->status_process === 'waiting_for_discharge' || $cliente->status_process === 'active'){ ?>
+        <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active'){ ?>
             
             <strong><?=$cliente->last_name .' '.$cliente->first_name?></strong> Cuit / Cuil <strong><?=$cliente->cuit?></strong> (en adelante el Recolector) con domicilio en <strong><?=$cliente->home_address?></strong> , convienen la locación de servicios denominada recolección de decodificadores y /o módems prestada por parte del Recolector únicamente a Express .
             Vehículo integrado al contrato marca : <strong><?=$cliente->vehicle_brand?></strong>  modelo : <strong><?=$cliente->vehicle_model?></strong> patente : <strong><?=$cliente->patent?></strong> siendo <strong><?=$cliente->signed_date?></strong>
 
-        <?php }if($cliente->status_process === 'registered') {?>
+        <?php }if($cliente->status_process === 'signcontract') {?>
 
         <input id="nombre" name="nombre" type="text"  value="<?=$cliente->last_name .' '.$cliente->first_name?>" readonly> Cuit / Cuil 
         <input id="cuit" name="cuit" type="text" placeholder="Ingrese Cuit/Cuil" value="<?=$cliente->cuit?>" > (en adelante el Recolector) con domicilio en 
@@ -81,10 +82,10 @@
             </p>
             <p style="text-align: justify;">
                 -Express envía una base de datos al Recolector vía mail con los datos de la persona y el equipo a retirar. Definiendo como mail de contacto: 
-                <?php if($cliente->status_process === 'registered'){?>
+                <?php if($cliente->status_process === 'signcontract'){?>
                      <input id="email" name="email" type="text" placeholder="Ingrese email" value="<?=$cliente->mail?>"  readonly> Teléfono/ Celular de contacto: 
                      <input id="telefono" name="telefono" type="text" placeholder="Ingrese telefono" value="<?=$cliente->phone_number?>" readonly>
-               <?php  } if($cliente->status_process === 'waiting_for_discharge' || $cliente->status_process === 'active'){ ?>
+               <?php  } if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active'){ ?>
                 <strong><?=$cliente->mail?></strong> Teléfono/ Celular de contacto: <strong><?=$cliente->phone_number?></strong>
 
                    <?php   }?>
@@ -141,12 +142,12 @@
                 El pago ÚNICAMENTE se hace por TRANSFERENCIA en cuenta bancaria de ahorro o corriente , la que el Recolector define aquí :
                 </p>
 
-            <?php if($cliente->status_process === 'registered'){?>
+            <?php if($cliente->status_process === 'signcontract'){?>
 
                 CBU: <input type="text" id="cbu" name="cbu" value="<?=$cliente->cbu?>" placeholder="Ingresar CBU"> BANCO: <input type="text" id="banco" name="banco" value="<?=$cliente->banco?>" placeholder="Ingresar BANCO"> 
                 
                 <?php }?>
-                 <?php if($cliente->status_process === 'waiting_for_discharge' || $cliente->status_process === 'active'){ ?>
+                 <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active'){ ?>
 
                     <p style="text-align: justify;">
                         CBU: <?=$cliente->cbu?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BANCO: <?=$cliente->banco?>
@@ -176,14 +177,14 @@
               </p>
             
             
-            <?php if($cliente->status_process === 'registered'){?>
+            <?php if($cliente->status_process === 'signcontract'){?>
 
                 <button id="acepto" name="acepto" class="btn btn-success"> ACEPTO </button>
                 <button id="noacepto" name="noacepto" class="btn btn-danger"> NO ACEPTO </button>
 
                     <?php }?>
 
-            <?php if($cliente->status_process === 'waiting_for_discharge' || $cliente->status_process === 'active'){ ?>
+            <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active'){ ?>
                 
                
                 

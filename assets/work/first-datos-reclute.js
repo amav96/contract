@@ -53,6 +53,14 @@ $(document).ready(function () {
 
   })
 
+  $('#persona').on('change', function (event) {
+    personaDomPer = event.target.files;
+    persona = personaDomPer[0];
+
+ 
+
+  })
+
   $("#datosPost").submit(function (e) {
     e.preventDefault();
 
@@ -90,6 +98,7 @@ $(document).ready(function () {
     datos.append("infomono", monotributo);
     datos.append("cuilrut", cuilRut);
     datos.append("comprobante", comprobanteDomicilio);
+    datos.append("persona", persona);
     datos.append("numero_dni", $("#numero_dni").val());
     datos.append("nombre", $("#nombre").val());
     datos.append("apellido", $("#apellido").val());
@@ -106,7 +115,7 @@ $(document).ready(function () {
     datos.append("tipo_vehiculo", $("#tipo_vehiculo").val());
     datos.append("horario_disponible", $("#horario_disponible").val());
     datos.append("telefono_celular", $("#telefono_celular").val());
-    datos.append("cbu", $("#cbu").val());
+   
     datos.append("tipo", $("#tipo").val());
     datos.append("hora_solicitud", $("#horario_solicitud").val());
    
@@ -325,13 +334,13 @@ function validarFirstFormRequest() {
     }
 
 
-    var elemento = document.getElementById("cbu").value
-    if (elemento.length < 21) {
+    var elemento = document.getElementById("persona").value
+    if (elemento == "") {
       $("#procesando").hide();
       Swal.fire({
         icon: 'error',
-        title: 'Cbu',
-        text: 'Tu cbu no es valido'
+        title: 'persona',
+        text: 'Debes enviarnos una imagen tuya frontal'
       })
       return false
     }

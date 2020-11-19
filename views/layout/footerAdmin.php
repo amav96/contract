@@ -1,6 +1,7 @@
 
    
    <?php require_once '../modal/adm/alta.php'; ?>
+   <?php require_once '../modal/adm/status.php'; ?>
    
     <script src="../../assets/adm/panel.js"></script>
     <script src="../../assets/adm/alta.js"></script>

@@ -22,6 +22,13 @@ if (isset($_SESSION["tipo"])) {
         </div>
     </div>
 
+    <div class="container-datos-solicitante" id="container-datos-solicitante">
+
+        <div class="box-solicitante" id="box-solicitante">
+
+        </div>
+    </div>
+
     <div class="text-center  d-flex justify-content-center">
            <div class="form-group w-40 p-3 ">
               <label  for="">Ingresar documento</label>

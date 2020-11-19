@@ -288,6 +288,38 @@ if(isset($_GET["usuario"])  &&  isset($_GET["accion"])){
             }
         }
 
+        public function modifyStatus(){
+
+            if($_POST){
+
+             
+                $status= isset($_POST["estado"])?$_POST["estado"] :false;
+                $id= isset($_POST["id_status"])?$_POST["id_status"] :false;
+
+                $modify = new Usuarios();
+                $modify->setTipo($status);
+                $modify->setIdenviado($id);
+                $modify = $modify->setStatus();
+
+                if($modify){
+
+                    $objeto[]=array(
+                        'result' => '1',
+                    );
+                }else {
+                    $objeto[]=array(
+                        'result' => '2',
+                    );
+                }
+
+                $jsonstring =  json_encode($objeto);
+                echo $jsonstring;
+
+
+            }
+
+        }
+
    }
 
 

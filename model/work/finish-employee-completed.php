@@ -42,11 +42,11 @@ function insertoPrimerRegistroDeSolicitante($documento)
   if (isset($_POST['document'])) {
     $query = "INSERT INTO reclute (first_name,last_name,employee_age,knowledge_path,
         dni,id_number,monotributo,infomonotributo,home_address,postal_code,
-        location,province,mail,phone_number,vehicle_type, available_schedules,status,type_request,characteristic)
+        location,province,mail,phone_number,vehicle_type, available_schedules,status,type_request,characteristic,status_process)
          values ('$nombre','$apellido','$employee_age','$viaConocimiento',
          '$documento','$numeroDocu','$monotributo','$infoMonotributo',
          '$direccion','$codigoPostal','$localidad','$provincia','$email',
-         '$nroMovil','$tipoVehiculo','$horariosDisponibles', 'Nuevo', '$tipo','$caracteristica')";
+         '$nroMovil','$tipoVehiculo','$horariosDisponibles', 'Nuevo', '$tipo','$caracteristica','registered')";
 
     $result = mysqli_query($connection, $query);
 

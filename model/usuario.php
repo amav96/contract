@@ -148,6 +148,8 @@ class Usuarios{
             if(isset($_REQUEST["numerodoc"]) ||  !empty($_REQUEST["numerodoc"])) {
               $sql.=" SELECT * from reclute where id_number like '%{$this->getNro_dni()}%' or last_name like '%{$this->getNro_dni()}%' or first_name  like '%{$this->getNro_dni()}%' order by momento desc";
            }
+        
+
            $usuario = $this->db->query($sql);
            if($usuario && $usuario->num_rows > 0){
                $result = $usuario;
@@ -191,7 +193,7 @@ class Usuarios{
         $nameImg = 'contrato'.$this->getHorarioSolicitud().$this->getNro_dni().'.png'; 
 
         $result = false;
-        $sql = "UPDATE reclute set mail='{$this->getEmail()}',phone_number='{$this->getTelefono_celular()}',cbu='{$this->getCbu()}',banco='{$this->getBanco()}',status_process='waiting_for_discharge',img_signed='$nameImg',signed_date='{$this->getHorarioSolicitud()}',cuit='{$this->getCuit()}',vehicle_brand='{$this->getVehiculoMarca()}',vehicle_model='{$this->getCuit()}',patent='{$this->getPatente()}' where id_number='{$this->getNro_dni()}'";
+        $sql = "UPDATE reclute set mail='{$this->getEmail()}',phone_number='{$this->getTelefono_celular()}',cbu='{$this->getCbu()}',banco='{$this->getBanco()}',status_process='signedcontract',img_signed='$nameImg',signed_date='{$this->getHorarioSolicitud()}',cuit='{$this->getCuit()}',vehicle_brand='{$this->getVehiculoMarca()}',vehicle_model='{$this->getCuit()}',patent='{$this->getPatente()}' where id_number='{$this->getNro_dni()}'";
       
         $actualizar = $this->db->query($sql); 
        
@@ -249,6 +251,20 @@ class Usuarios{
             $result= true;
         }else {
             $result= false;
+        }
+        return $result;
+    }
+
+    public function setStatus(){
+        $result = false;
+        $sql = "UPDATE reclute set status_process='{$this->getTipo()}' where id='{$this->getIdenviado()}'";
+        
+        $status = $this->db->query($sql);
+        if($status){
+            $result = true;
+
+        }else {
+            $result = false;
         }
         return $result;
     }

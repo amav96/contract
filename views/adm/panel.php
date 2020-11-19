@@ -158,8 +158,5 @@ if (isset($_SESSION["tipo"])) {
     </div>
 
    
-
-    <script src="../../assets/adm/panel.js"></script>
-    <script src="../../estilos/personal/js/logo.js"> </script>
     
     <?php require_once '../layout/footerAdmin.php'; ?>

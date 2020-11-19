@@ -44,7 +44,7 @@ function InsertarPrimerRegistro($nroDocumento,$fotodocumentofront, $fotodocument
      $tipo_vehiculo = $_POST["tipo_vehiculo"];
      $horario_disponible = $_POST["horario_disponible"];
      $telefono_celular = $_POST["telefono_celular"];
-     $cbu = $_POST["cbu"];
+
      $tipo = $_POST["tipo"];
      
      
@@ -53,7 +53,7 @@ function InsertarPrimerRegistro($nroDocumento,$fotodocumentofront, $fotodocument
     
      print_r($_POST);
 
-     $query="INSERT INTO reclute (first_name,last_name,mail,knowledge_path,country,province,location,home_address,postal_code,dni,monotributo,characteristic,vehicle_type,available_schedules,id_number,phone_number,cbu,type_request,status,fecha) values ('$nombre','$apellido','$email','$via_conocimiento','$pais','$provincia','$localidad','$domicilio','$codigoPostal','$dni','$monotributo','$caracteristica','$tipo_vehiculo','$horario_disponible','$nroDocumento','$telefono_celular','$cbu','$tipo','Nueva','$horario_solicitud')";
+     $query="INSERT INTO reclute (first_name,last_name,mail,knowledge_path,country,province,location,home_address,postal_code,dni,monotributo,characteristic,vehicle_type,available_schedules,id_number,phone_number,type_request,status,fecha,status_process) values ('$nombre','$apellido','$email','$via_conocimiento','$pais','$provincia','$localidad','$domicilio','$codigoPostal','$dni','$monotributo','$caracteristica','$tipo_vehiculo','$horario_disponible','$nroDocumento','$telefono_celular','$tipo','Nueva','$horario_solicitud','registered')";
 
      $result=mysqli_query($connection,$query);
 
@@ -156,6 +156,22 @@ function cargarImagenesDocYMono($nroDocumento,$fotodocumentofront, $fotodocument
 
             $nombresuno = $namecinco;
             copy($cuilrutfoto, $destinocinco);
+        }
+    }
+
+
+    if (isset($_FILES['persona']['tmp_name'])) {
+
+        $fotopersona = $_FILES['persona']['tmp_name'];
+
+        $nameseis = $nroDocumento . 'persona.' . $type;
+
+        if (is_uploaded_file($fotopersona)) {
+
+            $destinoseis = '../../estilos/imagenes/imgRegister/' . $nameseis;
+
+            $nombresseis = $nameseis;
+            copy($fotopersona, $destinoseis);
         }
     }
 
