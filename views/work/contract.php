@@ -7,11 +7,11 @@
 
 <!-- --------------------------------2------------------------------------------->
 <?php require_once '../views/layout/header.php' ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script> 
 
 
 
-<?php  if($cliente->status_process === '' || $cliente->status_process === null || $cliente->status_process === 'registered' || $cliente->status_process === 'doesNotQualify' || $cliente->status_process === 'down'){ 
+<?php  if($cliente->status_process === '' || $cliente->status_process === null || $cliente->status_process === 'registered' || $cliente->status_process === 'doesNotQualify' || $cliente->status_process === 'down' ){ 
     
     
     ?>
@@ -32,7 +32,7 @@
  <?php } else { ?>
 
 
-    <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active'){ ?>
+    <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active' || $cliente->status_process === 'show'){ ?>
 
        <div class="container" >
        <h3 style="margin:5rem auto 1rem auto;" class="text-center">Contrato listo</h3>
@@ -65,7 +65,7 @@
                 <p style="text-align: justify;"> Las partes independientes , Express Metropolitana de Servicios SRL Cuit 30-70944102-3 y el Sr
 
                 <!-- Si la solicitud ya esta firmada -->
-            <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active'){ ?>
+            <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active' || $cliente->status_process === 'show'){ ?>
                 
                 <strong><?=$cliente->last_name .' '.$cliente->first_name?></strong> Cuit / Cuil <strong><?=$cliente->cuit?></strong> (en adelante el Recolector) con domicilio en <strong><?=$cliente->home_address?></strong> , convienen la locación de servicios denominada recolección de decodificadores y /o módems prestada por parte del Recolector únicamente a Express .
                 Vehículo integrado al contrato marca : <strong><?=$cliente->vehicle_brand?></strong>  modelo : <strong><?=$cliente->vehicle_model?></strong> patente : <strong><?=$cliente->patent?></strong> siendo <strong><?=$cliente->signed_date?></strong>
@@ -160,7 +160,7 @@
                     CBU: <input type="text" id="cbu" name="cbu" value="<?=$cliente->cbu?>" placeholder="Ingresar CBU"> BANCO: <input type="text" id="banco" name="banco" value="<?=$cliente->banco?>" placeholder="Ingresar BANCO"> 
                     
                     <?php }?>
-                    <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active'){ ?>
+                    <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active' || $cliente->status_process === 'show' ){ ?>
 
                         <p style="text-align: justify;">
                             CBU: <?=$cliente->cbu?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BANCO: <?=$cliente->banco?>
@@ -209,7 +209,7 @@
             <p style="text-align: justify;"> Las partes independientes , Express Metropolitana de Servicios SRL Cuit 30-70944102-3 y el Sr
 
             <!-- Si la solicitud ya esta firmada -->
-        <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active'){ ?>
+        <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active' || $cliente->status_process === 'show'){ ?>
             
             <strong><?=$cliente->last_name .' '.$cliente->first_name?></strong> Cuit / Cuil <strong><?=$cliente->cuit?></strong> (en adelante el Recolector) con domicilio en <strong><?=$cliente->home_address?></strong> , convienen la locación de servicios denominada recolección de decodificadores y /o módems prestada por parte del Recolector únicamente a Express . Siendo <strong><?=$cliente->signed_date?></strong>
 
@@ -237,7 +237,7 @@
                 <?php if($cliente->status_process === 'signcontract'){?>
                      <input id="email" name="email" type="text" placeholder="Ingrese email" value="<?=$cliente->mail?>"  readonly> Teléfono/ Celular de contacto: 
                      <input id="telefono" name="telefono" type="text" placeholder="Ingrese telefono" value="<?=$cliente->phone_number?>" readonly>
-               <?php  } if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active'){ ?>
+               <?php  } if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active' || $cliente->status_process === 'show'){ ?>
                 <strong><?=$cliente->mail?></strong> Teléfono/ Celular de contacto: <strong><?=$cliente->phone_number?></strong>
 
                    <?php   }?>
@@ -275,7 +275,7 @@
                 CBU: <input type="text" id="cbu" name="cbu" value="<?=$cliente->cbu?>" placeholder="Ingresar CBU"> BANCO: <input type="text" id="banco" name="banco" value="<?=$cliente->banco?>" placeholder="Ingresar BANCO"> 
                 
                 <?php }?>
-                 <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active'){ ?>
+                 <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active' || $cliente->status_process === 'show'){ ?>
 
                     <p style="text-align: justify;">
                         CBU: <?=$cliente->cbu?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BANCO: <?=$cliente->banco?>
@@ -328,7 +328,7 @@
         El Comercio que declara ser una entidad independiente y con atención franca al publico en los siguientes días
         y horarios y días :
 
-        <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active'){ ?>
+        <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active' || $cliente->status_process === 'show'){ ?>
 
        <strong> <?= $cliente->customer_service_hours?></strong>
 
@@ -344,7 +344,7 @@
                <!--  -->
 
 
-         <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active'){ ?>
+         <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active' || $cliente->status_process === 'show'){ ?>
             <p style="text-align: justify;">
             Las partes independientes, Express Metropolitana de Servicios SRL CUIT 30-70944102-3, representada en
                 este acto por Julio E. Mesa, en su carácter de Apoderado,  y <strong><?=$cliente->name_ecommerce?></strong> CUIT / CUIL  <strong><?=$cliente->cuit?></strong> representada en este acto por <strong><?=$cliente->last_name.' '.$cliente->first_name?></strong>   en su caracter de <strong>Dueño</strong> (en adelante EL COMERCIO) con domicilio comercial en <strong><?=$cliente->home_address?></strong>. Conviene la locación de servicios denominada recepción de decodificadores y /o modems prestada por parte de EL COMERCIO únicamente a Express. Siendo <strong><?=$cliente->signed_date?></strong>.
@@ -357,7 +357,7 @@
                 este acto por Julio E. Mesa, en su carácter de Apoderado,  y 
                 <input id="nombre_comercio" name="nombre_comercio" type="text" placeholder="nombre del comercio" value="<?=$cliente->name_ecommerce?>" > 
                 CUIT/CUIL 
-                <input id="cuit" name="cuit" type="text" placeholder="Ingrese su CUIT/CUIL" value="<?=$cliente->cuit?>"  readonly> representada en este acto por <strong><?=$cliente->last_name.' '.$cliente->first_name?></strong> en su caracter de <strong>Dueño</strong> (en adelante EL COMERCIO) con domicilio comercial en 
+                <input id="cuit" name="cuit" type="text" placeholder="Ingrese su CUIT/CUIL" value="<?=$cliente->cuit?>"  > representada en este acto por <strong><?=$cliente->last_name.' '.$cliente->first_name?></strong> en su caracter de <strong>Dueño</strong> (en adelante EL COMERCIO) con domicilio comercial en 
                  <input id="domicilio" name="domicilio" type="text" placeholder="Ingrese domicilio" value="<?=$cliente->home_address?>"  readonly>.
                   Conviene la locación de servicios denominada recepción de decodificadores y /o modems prestada por parte de EL COMERCIO únicamente a Express. Siendo
                    <input id="fecha_firma" name="fecha_firma" value="<?=date('d-m-Y')?>"  type="text" readonly>.
@@ -445,7 +445,7 @@
                     CBU: <input type="text" id="cbu" name="cbu" value="<?=$cliente->cbu?>" placeholder="Ingresar CBU"> BANCO: <input type="text" id="banco" name="banco" value="<?=$cliente->banco?>" placeholder="Ingresar BANCO"> 
                     
                     <?php }?>
-                    <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active'){ ?>
+                    <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active' || $cliente->status_process === 'show'){ ?>
 
                         <p style="text-align: justify;">
                             CBU: <?=$cliente->cbu?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BANCO: <?=$cliente->banco?>
@@ -517,7 +517,7 @@
 
                     <?php }?>
 
-            <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active'){ ?>
+            <?php if($cliente->status_process === 'signedcontract' || $cliente->status_process === 'active' || $cliente->status_process === 'show'){ ?>
                 
                
                 
@@ -538,6 +538,6 @@
 <?php require_once '../views/layout/footer.php' ?>
 <?php require_once '../views/modal/trabajo/signed_contract.php'; ?>
 <script src="<?= base_url ?>assets/work/signed_contract.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> 
 
 

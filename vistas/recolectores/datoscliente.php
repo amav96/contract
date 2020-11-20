@@ -84,6 +84,7 @@ if (!isset($_SESSION['username'])) {
             </b></h2>
           </div>
 
+          
           <br>
           <!--formulario generar orden -->
 
@@ -91,7 +92,7 @@ if (!isset($_SESSION['username'])) {
             <form id="task-form" method="POST">
               <div class="form-group">
                 <input type="text" class="form-control" name="id_recoleorden" id="id_recoleorden" value="<?php if (isset($_SESSION['username'])) {
-                                                                                                            echo $_SESSION['username']['username'];
+                                                                                                            echo $_SESSION["username"]["id"];
                                                                                                           } ?>" placeholder="ID recolector" style="width:100px;height:25px;">
                 <input type="hidden" class="form-control" name="fecha_orden" id="fecha_orden" value="<?php date_default_timezone_set('America/Argentina/Buenos_Aires');
                                                                                                       echo date("Y-m-d H:i:s"); ?>" readonly>

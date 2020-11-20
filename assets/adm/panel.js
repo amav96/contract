@@ -542,7 +542,7 @@ function MostrarCuerpoNotificacion() {
    Gestion Usuario/Contrato
      </div>
      <div class="dato-contenido">
-       <a href="../../../contract/views/adm/registrados.php"></a>
+       <a target="_blank" href="../../../contract/views/adm/registrados.php"></a>
      </div>
      </div>
 
@@ -711,7 +711,7 @@ function MostrarCuerpoNotificacion() {
    Gestion Usuario/Contrato
      </div>
      <div class="dato-contenido">
-       <a href="../../../contract/views/adm/registrados.php">Gestión</a>
+       <a target="_blank" href="../../../contract/views/adm/registrados.php">Gestión</a>
      </div>
      </div>
       

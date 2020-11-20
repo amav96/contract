@@ -50,9 +50,10 @@
 
                     <div class="d-flex flex-column bd-highlight mb-3>">
 
-                        <label for="">id</label>
-                        <input type="text" id="id_ingreso" class="from-control">
-
+                        <div style="display:flex;justify-content:center;flex-direction:column;" id="cont-id">
+                            <label for="">id</label>
+                            <input type="text" id="id_ingreso" class="from-control">
+                        </div>
                     </div>
                 </div>
 
@@ -65,3 +66,4 @@
         </div>
     </div>
 </div>
+

@@ -1,5 +1,5 @@
 <?php require_once '../views/layout/header.php' ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script> -->
 <style>
     .form-enter {
         display: flex;
@@ -69,4 +69,4 @@
 <?php require_once '../views/layout/footer.php' ?>
 <?php require_once '../views/modal/trabajo/signed_contract.php'; ?>
 <script src="<?= base_url ?>assets/work/signed_contract.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> -->

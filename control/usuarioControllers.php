@@ -366,9 +366,86 @@ if(isset($_GET["usuario"])  &&  isset($_GET["accion"])){
 
         }
 
-        public function credencial(){
-            print_r($_POST);
+        public function consultaParaObtenerIdInsertado(){
+
+            if($_POST){
+
+                $id =  isset($_POST["idsacado"])? $_POST["idsacado"] :false ;
+
+                $sacarID = new Usuarios();
+                $sacarID->setIdenviado($id);
+                 $sacarID= $sacarID->getIDACTIVO(); 
+               if(is_object($sacarID)){
+
+                   foreach ($sacarID as $element){
+
+                     $objeto[]=array(
+                         'result' => '1',
+                         'id' => $element["idUsuario"],
+                     );
+
+                   }
+                    
+                   
+
+               }else{
+
+                $objeto[]=array(
+                    'result' => '2',
+                  
+                );
+
+               }
+
+               $jsonstring= json_encode($objeto);
+               echo $jsonstring;
+            }
         }
+
+        public function trabajadores(){
+
+            
+                  $id = isset($_POST["usuario"]) ? $_POST["usuario"] :'todos';
+                
+                  
+                $usuarios = new Usuarios();
+                $usuarios->setIdenviado($id);
+                $usuarios = $usuarios->getAllUsuariosRecolectores();
+
+                if(is_object($usuarios)){
+
+                    foreach($usuarios as $element){
+
+                    
+                        $objeto[]=array(
+                           'result' => '1',
+                           'id' => $element["id"],
+                           'tipo' => $element["tipo"],
+                           'nombre' => $element["nombre_recolector"],
+                           'email' => $element["email"],
+                           'status' => $element["status"],
+                           'fecha' => $element["momento"],
+                        );
+
+                    }
+
+                }else {
+
+                    
+                    $objeto[]=array(
+                        'result' => '2',
+                        
+                     );
+                }
+
+                $jsonstring = json_encode($objeto);
+                echo $jsonstring;
+
+
+            
+        }
+
+     
 
    }
 

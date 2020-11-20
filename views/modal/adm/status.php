@@ -22,11 +22,13 @@
                                 <option value="0">Seleccione estado</option>
                                 <option class="form-control" value="signcontract">Contrato enviado para firmar</option>
                                 <option value="doesNotQualify">No califica</option>
+                                <option value="show">Ver Contrato Dado de baja</option>
                             </select>
 
                         </div>
                     </div>
-                            <input style="width:10rem;" type="text" id="id_status" class="from-control">
+
+                            <input style="width:10rem;" type="hidden" id="id_status" class="from-control">
 
                        
                

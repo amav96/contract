@@ -44,7 +44,11 @@
 
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <ul class="social-icons">
-                        <li><a href="http://qr.afip.gob.ar/?qr=svAhiSzkY1Zz39T4Wdpifw,," target="_F960AFIPInfo"><img class="imgert" src="http://www.afip.gob.ar/images/f960/DATAWEB.jpg" border="0"></a></li>
+                        <li>
+                            <!-- <a href="http://qr.afip.gob.ar/?qr=svAhiSzkY1Zz39T4Wdpifw,," target="_F960AFIPInfo"><img class="imgert" src="http://www.afip.gob.ar/images/f960/DATAWEB.jpg" border="0"></a> -->
+
+
+                    </li>
                         <!-- <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
                     <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
                     <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li> -->

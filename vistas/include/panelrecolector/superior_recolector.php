@@ -1,3 +1,5 @@
+<?php require_once '../../config/parametros.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,22 +7,23 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-<link rel="stylesheet" href="../../estilos/css/alertorden.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="<?=base_url?>estilos/css/alertorden.css">
+ <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="../../estilos/css/custom.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<link rel="stylesheet" href="<?=base_url?>estilos/css/custom.css">
 
-  <script>src="../../script/recolector_recupero/jquery-3.4.1.min.js"</script>
+  <script>src="<?=base_url?>script/recolector_recupero/jquery-3.4.1.min.js"</script>
   
   
-  <link href="../../fonts/styles.css" rel="stylesheet">
- <link rel="stylesheet" href="../../estilos/css/formulario.css">
+  <link href="<?=base_url?>fonts/styles.css" rel="stylesheet">
+ <link rel="stylesheet" href="<?=base_url?>estilos/css/formulario.css">
  
-  <link rel="stylesheet" href="../../estilos/css/flexbox.css">
+  <link rel="stylesheet" href="<?=base_url?>estilos/css/flexbox.css">
+  <link rel="stylesheet" href="<?=base_url?>estilos/personal/css/panel_recolector/credencial.css">
   
 
 	
@@ -35,27 +38,27 @@ ESTE BOOTSTRAP TAMBIEN MODIFICA TU BOOTSTRAP ANTERIOR-->
 <!--===============================================================================================-->
 
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="<?=base_url?>fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../fonts/elegant-font/html-css/style.css">
+	<link rel="stylesheet" type="text/css" href="<?=base_url?>fonts/elegant-font/html-css/style.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="<?=base_url?>vendor/animate/animate.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="<?=base_url?>vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="<?=base_url?>vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="<?=base_url?>vendor/select2/select2.min.css">
 <!--===============================================================================================-->
 	
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../../css/util.css">
-	<link rel="stylesheet" type="text/css" href="../../css/main.css">
-	<link rel="stylesheet" type="text/css" href="../../css/contenedormove.css">
+	<link rel="stylesheet" type="text/css" href="<?=base_url?>css/util.css">
+	<link rel="stylesheet" type="text/css" href="<?=base_url?>css/main.css">
+	<link rel="stylesheet" type="text/css" href="<?=base_url?>css/contenedormove.css">
 	
-	<link href="../../fonts/styles.css" rel="stylesheet">
-  <link rel="stylesheet" href="../../estilos/css/estilos.css">
-  <link rel="stylesheet" href="../../estilos/css/logo.css">
+	<link href="<?=base_url?>fonts/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="<?=base_url?>estilos/css/estilos.css">
+  <link rel="stylesheet" href="<?=base_url?>estilos/css/logo.css">
 	
 <!--===============================================================================================-->
 </head>
@@ -94,8 +97,8 @@ ESTE BOOTSTRAP TAMBIEN MODIFICA TU BOOTSTRAP ANTERIOR-->
 
 			<div class="wrap_header">
 				<!-- Logo -->
-				<a href="../../index.html" class="logo">
-					<img src="../../images/logo.png" alt="IMG-LOGO">
+				<a href="<?=base_url?>index.html" class="logo">
+					<img src="<?=base_url?>images/logo.png" alt="IMG-LOGO">
 				</a>
 
 				<!-- Menu -->
@@ -103,24 +106,22 @@ ESTE BOOTSTRAP TAMBIEN MODIFICA TU BOOTSTRAP ANTERIOR-->
 					<nav class="menu">
 						<ul class="main_menu">
 						<li>
-						<a href="../../index.html" >Inicio</a>
+						<a href="<?=base_url?>index.html" >Inicio</a>
 								
 							</li>
 
+							
 							<li>
-							<a href="../../vistas/recolectores/geo_base.php" >Geo base</a>
-							</li>
-							<li>
-							<a href="../../vistas/recolectores/datoscliente.php" >Recolector</a>
+							<a href="<?=base_url?>vistas/recolectores/datoscliente.php" >Recolector</a>
 							</li>
 							
 							
 							<li>
-							<a href="../../conectar/cerrar_sesion.php" >Cerrar sesión</a>
+							<a href="<?=base_url?>conectar/cerrar_sesion.php" >Cerrar sesión</a>
 								
 							</li>
 							<li>
-							<a href="https://www.youtube.com/watch?v=E7kXUY9ENJk" target="_blank" >Necesito ayuda</a>
+							<a href="https://www.youtube.com/watch?v=E7kXUY9ENJk" target="_blank" >¿Como hacer remito?</a>
 								
 							</li>
 							<li>
@@ -148,7 +149,7 @@ ESTE BOOTSTRAP TAMBIEN MODIFICA TU BOOTSTRAP ANTERIOR-->
 		<div class="wrap_header_mobile">
 			<!-- Logo moblie -->
 			<a href="index.html" class="logo-mobile">
-				<img src="../../images/logo.png" alt="IMG-LOGO">
+				<img src="<?=base_url?>images/logo.png" alt="IMG-LOGO">
 			</a>
 
 			<!-- Button show menu -->
@@ -190,24 +191,24 @@ ESTE BOOTSTRAP TAMBIEN MODIFICA TU BOOTSTRAP ANTERIOR-->
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="../../index.html">Inicio</a>
+						<a href="<?=base_url?>index.html">Inicio</a>
 						
           <!--	<i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>-->
           <!-- flechita a la derecha de menu  !IMPORTANTE! -->
 					</li>
 
+					
 					<li class="item-menu-mobile">
-					<a href="../../vistas/recolectores/geo_base.php">Geo Base</a>
+					<a href="<?=base_url?>vistas/recolectores/credencial.php">Credencial</a>
 					</li>
-
 					
 
 					
 					<li class="item-menu-mobile">
-						<a href="../../conectar/cerrar_sesion.php">Cerrar Sesión</a>
+						<a href="<?=base_url?>conectar/cerrar_sesion.php">Cerrar Sesión</a>
 					</li>
 					<li class="item-menu-mobile">
-						<a href="https://www.youtube.com/watch?v=E7kXUY9ENJk" target="_blank" >Necesito ayuda</a>
+						<a href="https://www.youtube.com/watch?v=E7kXUY9ENJk" target="_blank" >¿Como hacer remito?</a>
 					</li>
 
 					

@@ -10,8 +10,7 @@ $(document).ready(function () {
       data: { usuario, contrasena },
       success: function (response) {
          var data = JSON.parse(response)
-         console.log(response)
-         return
+        
   
   if(data.fail !=false){
       

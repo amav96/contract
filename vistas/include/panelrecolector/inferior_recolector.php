@@ -13,27 +13,27 @@
 <!--===============================================================================================-->
 	
 <!--===============================================================================================-->
-	<script type="text/javascript" src="../../vendor/animsition/js/animsition.min.js"></script>
+	<script type="text/javascript" src="<?=base_url?>vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
 
 <!--===============================================================================================-->
-	<script type="text/javascript" src="../../vendor/select2/select2.min.js"></script>
+	<script type="text/javascript" src="<?=base_url?>vendor/select2/select2.min.js"></script>
 	
 <!--===============================================================================================-->
-	<script type="text/javascript" src="../../vendor/slick/slick.min.js"></script>
-	<script type="text/javascript" src="../../js/slick-custom.js"></script>
+	<script type="text/javascript" src="<?=base_url?>vendor/slick/slick.min.js"></script>
+	<script type="text/javascript" src="<?=base_url?>js/slick-custom.js"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="../../vendor/countdowntime/countdowntime.js"></script>
+	<script type="text/javascript" src="<?=base_url?>vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="../../vendor/lightbox2/js/lightbox.min.js"></script>
+	<script type="text/javascript" src="<?=base_url?>vendor/lightbox2/js/lightbox.min.js"></script>
 <!--===============================================================================================-->
-	<script type="text/javascript" src="../../vendor/sweetalert/sweetalert.min.js"></script>
+	<script type="text/javascript" src="<?=base_url?>vendor/sweetalert/sweetalert.min.js"></script>
 	
 	
 
 <!--===============================================================================================-->
     
-	<script src="../../js/main.js"></script>
+	<script src="<?=base_url?>js/main.js"></script>
 	
 
 </body>

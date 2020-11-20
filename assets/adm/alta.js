@@ -47,7 +47,6 @@ $(document).on("click","#alta",function(){
 
 })
 
-
 $(document).on("click","#send-data-alta",function(){
 
     var id = $("#id_recolector").val()
@@ -60,12 +59,14 @@ $(document).on("click","#send-data-alta",function(){
 
    
 if(id === ''){alertNegative("El formulario de registro no tiene una guia");return false}
-else if (nombre === ''){alertNegative("Debes ingresar el nombre de recolector");return false}
-else if(correo === ''){alertNegative("Debes ingresar el correo del recolector");return false}
-else if(tipo === '0'){alertNegative("Debes escoger el tipo");return false}
-else if(id_ingreso === ''){alertNegative("Debes ingresar el id del recolector");return false}
-else if(status_reco === '0'){alertNegative("Debes escoger el estado");return false}
-else {
+ if (nombre === ''){alertNegative("Debes ingresar el nombre de recolector");return false}
+ if(correo === ''){alertNegative("Debes ingresar el correo del recolector");return false}
+ if(tipo === '0'){alertNegative("Debes escoger el tipo");return false}
+ if($("#cont-id").is(":visible")){
+  if(id_ingreso === ''){alertNegative("Debes ingresar el id del recolector");return false}
+ }
+
+if(status_reco === '0'){alertNegative("Debes escoger el estado");return false}
      $.ajax({
               url:"../../control/usuarioControllers.php?usuario&accion=activateUser",
               type:"POST",
@@ -77,27 +78,29 @@ else {
              
                if(objeto[0].result === '1'){
               
-                 alertPositive("Se guardo exitosamente");
-                 $("#id_ingreso").val("")
-                 $("#status_reco").prop("selectedIndex", 0);
-                 $("#modalAlta").modal("hide") 
                 
-                 showAll()
 
-               }if(objeto[0].result === '2'){
-                 alertNegative("Error al actualizar estado");return false
               
-               }if(objeto[0].result === '3'){
-                 alertNegative("El id ya existe");return false
-               }
-               if(objeto[0].result === '4'){
-                 alertNegative("No llego la información completa");return false
-               }
-          
-          })
-}
 
-       
+                  alertPositive("Se guardo exitosamente");
+                  $("#id_ingreso").val("")
+                  $("#status_reco").prop("selectedIndex", 0);
+                  $("#cont-id").show()
+                  $("#modalAlta").modal("hide") 
+                
+                  showAll()
+
+               }
+                if(objeto[0].result === '2'){
+                  alertNegative("Error al actualizar estado");return false
+              
+                }if(objeto[0].result === '3'){
+                  alertNegative("El recolector ya existe");return false
+                }
+                if(objeto[0].result === '4'){
+                  alertNegative("No llego la información completa");return false
+                }
+          })       
 })
 
 $(document).on("click","#estados",function(){
@@ -145,23 +148,87 @@ var id_status =  $("#id_status").val()
 
         $("#status").prop("selectedIndex", 0);
         showAll();
+        
         $("#modalStatus").modal("hide")
-
+        
         alertPositive("Se actualizo el estado exitosamente!");
         
       }else {
         alertNegative("Ocurrio algún problema al cambiar estado");return false
       }
-
     })
+  }
+})
 
 
+$(document).on("change", '#status_reco', function() {
+
+
+  if ($("#status_reco").val() === 'down' || $("#status_reco").val() === 'activeExist') {
+
+      $("#cont-id").hide()
 
   }
+  if ($("#status_reco").val() === 'active') {
 
 
+      $("#cont-id").show()
+
+      }
 
 })
+
+$(document).on("click","#avisoactivo",function(){
+
+
+  var idwhats = this.parentElement
+  var idsacado = $(idwhats).attr('guiacontrato')
+
+  var attrTel =  this.parentElement
+  var telMovil = $(attrTel).attr('telefono')
+
+  
+  $("#telefono_enviar_whatsapp").val(telMovil)
+
+
+       $.ajax({
+         url:"../../control/usuarioControllers.php?usuario&accion=consultaParaObtenerIdInsertado",
+         type:"POST",
+         data:{idsacado},
+         beforeSend:function(){
+         
+         }
+       }).done(function(response){
+         var objeto = JSON.parse(response)
+         if(objeto[0].result === '1') {
+
+          $("#modal_sendWhatsapp").modal("show")
+          $("#id_enviar_whatsapp").val(objeto[0].id)
+         }else{
+           alertNegative('Este recolector no esta dado de alta');
+         }
+        
+       })
+
+})
+
+$(document).on("click","#send-data-whatsap",function(){
+
+  
+  if($("#id_enviar_whatsapp").val()=== ''){
+    alertNegative("Debes ingresar el id usuario")
+
+  }else if($("#telefono_enviar_whatsapp").val() === ''){
+    alertNegative("Debes ingresar el Nro de telefono")
+  }else{
+     var urlencodedtext = 'Hola%20ya%20estas%20activo%20para%20trabajar%20con%20nosotros! %20Ingresa%20con%20tu%20usuario%20'+$("#id_enviar_whatsapp").val()+'';
+
+  window.open('https:api.whatsapp.com/send?phone='+ $("#telefono_enviar_whatsapp").val() +'&text=' + urlencodedtext, '_blank');
+  }
+
+})
+
+
 
 
    function showRequest(object){
@@ -179,7 +246,7 @@ var id_status =  $("#id_status").val()
             html+='<th>Estado de proceso <th>';
             html+='<th>Accion Usuario <th>';
             html+='<th>Tel Movil <th>';
-            html+='<th>ID<th>';
+          
             html+='<th>Nombre <th>';
             html+='<th>Apellido <th>';
             html+='<th>Fecha Nacimiento <th>';
@@ -193,11 +260,11 @@ var id_status =  $("#id_status").val()
             html+='<th>Correo <th>';
             html+='<th>Cbu <th>';
             html+='<th>Cuit <th>';
-            html+='<th>Tipo <th>';
+            
             html+='<th>Banco <th>';
             html+='<th>fecha firma <th>';
           
-            html+='<th>Tipo Vehiculo <th>';
+            html+='<th>Tipo<th>';
             html+='<th>Marca vehiculo <th>';
             html+='<th>Modelo vehiculo <th>';
             html+='<th>Patente <th>';
@@ -216,9 +283,6 @@ var id_status =  $("#id_status").val()
             html+='<th>Final Empresa <th>';
             html+='<th>Antecedentes Restricciones <th>';
             html+='<th>Observaciones <th>';
-            
-        
-          
             
             html+='<th>Tipo De Solicitud <th>';
             
@@ -244,7 +308,7 @@ var id_status =  $("#id_status").val()
                     ?html+='<td>Contrato firmado<td>'
                     :(val.status_process === 'doesNotQualify' || val.status_process === 'down')
                     ?html+='<td guia="'+val.id+'"><button style="font-size:14px;" id="estados" class="btn btn-warning">Estados</button><td>'
-                    :(val.status_process === 'active' || val.status_process === 'activeExist')
+                    :(val.status_process === 'active' || val.status_process === 'activeExist' || val.status_process === 'show')
                     ?html+='<td>Firmado<td>'
                     :html+='<td>Procesando<td>';
                     
@@ -257,7 +321,7 @@ var id_status =  $("#id_status").val()
                     ?html+='<td>Esperando revisión<td>'
                     :(val.status_process === 'signcontract')
                     ?html+='<td>Esperando firmar contrato<td>'
-                    :(val.status_process === 'signedcontract' || val.status_process === 'active' || val.status_process === 'down' || val.status_process === 'activeExist')
+                    :(val.status_process === 'signedcontract' || val.status_process === 'active' || val.status_process === 'down' || val.status_process === 'activeExist' || val.status_process === 'show')
                     ?html+='<td guia="'+val.id+'" nombre="'+ val.nombre + ' ' +val.apellido+'" correo="' +val.correo +'"  ><button style="font-size:14px;" id="alta" class="btn btn-success">Alta/baja</button><td>'
                     :(val.status_process === 'doesNotQualify')
                     ?html+='<td>No Califica<td>'
@@ -277,27 +341,25 @@ var id_status =  $("#id_status").val()
                     ?html+='<td>Activo<td>'
                     :(val.status_process === 'doesNotQualify')
                     ?html+='<td>No califica <td>'
-                    :(val.status_process === 'down')
+                    :(val.status_process === 'down' || val.status_process === 'show')
                     ?html+='<td>Baja<td>'
                     :true;
                     
                     //td accion usuario
                  
-                    (val.status_process === 'registered' || val.status_process === 'doesNotQualify' || val.status_process === 'down')
-                    ?html+='<td guiacontrato="'+val.id +'" > <a id="sendcontrato" target="_blank" href="https:api.whatsapp.com/send?phone='+val.telMovil + '&text=Te%20invitamos%20a%20completar%20tu%20*alta*%20firmando%20este%20*contrato*%20192.168.8.112/contract/control/usuarioControllers.php?usuario%26accion=showContract%26numerodoc='+val.nroDoc +'"><button class="btn btn-success">Enviar Contrato</button></a><td>'
+                    (val.status_process === 'registered' || val.status_process === 'doesNotQualify' || val.status_process === 'down' || val.status_process === 'show')
+                    ?html+='<td guiacontrato="'+val.id +'" > <a id="sendcontrato" target="_blank" href="https:api.whatsapp.com/send?phone='+val.telMovil + '&text=Te%20invitamos%20a%20completar%20tu%20*alta*%20firmando%20este%20*contrato*%20192.168.8.112/contract/control/usuarioControllers.php?usuario%26accion=showContract%26numerodoc='+val.nroDoc +'"><button class="btn btn-info">Enviar Contrato</button></a><td>'
                     :(val.status_process === 'active' || val.status_process === 'activeExist')
-                    ?html+='<td guiacontrato="'+val.id +'"  ><a target="_blank" href="https:api.whatsapp.com/send?phone='+val.telMovil + '&text=Hola%20ya%20estas%20activo%20para%20trabajar%20con%20nosotros!"><button class="btn btn-success">Aviso activo</button></a><td>'
+                    ?html+='<td guiacontrato="'+val.id +'" telefono="'+val.telMovil+'" ><button id="avisoactivo" class="btn btn-success">Aviso activo</button><td>'
                     :(val.status_process === 'signcontract')
-                    ?html+='<td guiacontrato="'+val.id +'" ><a target="_blank" href="https:api.whatsapp.com/send?phone='+val.telMovil + '&text=Te%20hemos%20enviado%20el%20contrato.%20ya%20estas%20listo?"><button class="btn btn-success">Contrato Enviado</button></a><td>'
+                    ?html+='<td guiacontrato="'+val.id +'" ><a target="_blank" href="https:api.whatsapp.com/send?phone='+val.telMovil + '&text=Te%20hemos%20enviado%20el%20contrato.%20ya%20estas%20listo?"><button class="btn btn-primary">¿Firmaste contrato?</button></a><td>'
                     :(val.status_process === 'signedcontract')
-                    ?html+='<td guiacontrato="'+val.id +'"  ><a target="_blank" href="https:api.whatsapp.com/send?phone='+val.telMovil + '&text=En%20breve%20estaras%20activo%20para%20trabajar"><button class="btn btn-success">Pronto Activo</button></a><td>'
+                    ?html+='<td guiacontrato="'+val.id +'"  ><a target="_blank" href="https:api.whatsapp.com/send?phone='+val.telMovil + '&text=En%20breve%20estaras%20activo%20para%20trabajar"><button class="btn btn-warning">Pronto Activo</button></a><td>'
                     :html+='<td guiacontrato="'+val.id +'"  >'+val.telMovil+'<td>';
-
-                   
 
                     // --------------
                     html+='<td>'+val.telMovil+ '<td>';
-                    html+='<td>'+val.id + '<td>';
+                    
                     html+='<td >'+val.nombre + '<td>';
                     html+='<td>'+val.apellido + '<td>';
                     html+='<td>'+val.fechaNac + '<td>';
@@ -311,13 +373,13 @@ var id_status =  $("#id_status").val()
                     html+='<td >'+val.correo + '<td>';
                     html+='<td>'+val.cbu + '<td>';
                     html+='<td>'+val.cuit + '<td>';
-                    html+='<td>'+val.tipo + '<td>';
+                    
                     html+='<td>'+val.banco + '<td>';
                     html+='<td>'+val.signed_date + '<td>';
                    
                    
                     html+='<td>'+val.tipoVehiculo + '<td>';
-html+='<td>'+val.vehicle_brand + '<td>';
+                    html+='<td>'+val.vehicle_brand + '<td>';
                     html+='<td>'+val.vehicle_model + '<td>';
                     html+='<td>'+val.patent + '<td>';
                     html+='<td>'+val.pais + '<td>';
@@ -347,13 +409,36 @@ html+='<td>'+val.vehicle_brand + '<td>';
            html+='</tr>';
 
          })
+
          html+='</tbody>';
          html+='</table>';
+
+         
 
          return html;
 
    }
 
+
+   function showAll(){
+    var key = 'all';
+  
+    $.ajax({
+        url:"../../control/usuarioControllers.php?usuario&accion=request",
+        type:"POST",
+        data:{key},
+        beforeSend: function(){
+        },
+    }).done(function(response){
+       var object = JSON.parse(response);
+       var template ="";
+        if(object[0].result === '1'){
+  
+       template = showRequest(object); $("#table-solicitudes").html(template)
+  
+        }else if(object[0].result === '2'){ alert("no existe")}
+    })
+  }
 
    
 function alertPositive(str){
@@ -378,26 +463,7 @@ function alertPositive(str){
   });
   }
 
-  function showAll(){
-    var key = 'all';
-
-    $.ajax({
-        url:"../../control/usuarioControllers.php?usuario&accion=request",
-        type:"POST",
-        data:{key},
-        beforeSend: function(){
-        },
-    }).done(function(response){
-       var object = JSON.parse(response);
-       var template ="";
-        if(object[0].result === '1'){
   
-       template = showRequest(object); $("#table-solicitudes").html(template)
-  
-        }else if(object[0].result === '2'){ alert("no existe")}
-    })
-  }
-
    
 
 

@@ -112,7 +112,7 @@ class Usuarios{
     }
     
     public function setCuit($cuit){
-        $this->cuit=$cuit;
+        $this->cuit=$this->db->real_escape_string($cuit);
     }
     public function setDomicilio($domicilio){
         $this->domicilio=$this->db->real_escape_string($domicilio);
@@ -215,8 +215,16 @@ class Usuarios{
         $nameImg = 'contrato'.$this->getHorarioSolicitud().$this->getNro_dni().'.png'; 
 
         $result = false;
+
+        if(isset($_POST["email"]) && !empty($_POST["email"]) ){
+
+            $sql= "UPDATE reclute set status='contrato-firmado', mail='{$this->getEmail()}',phone_number='{$this->getTelefono_celular()}',cbu='{$this->getCbu()}',banco='{$this->getBanco()}',status_process='signedcontract',img_signed='$nameImg',signed_date='{$this->getHorarioSolicitud()}',cuit='{$this->getCuit()}',vehicle_brand='{$this->getVehiculoMarca()}',vehicle_model='{$this->getCuit()}',patent='{$this->getPatente()}',name_ecommerce='{$this->getNombre()}',customer_service_hours='{$this->getHorario_disponible()}' where id_number='{$this->getNro_dni()}'";
+        } else {
+
+            $sql= "UPDATE reclute set status='contrato-firmado',cbu='{$this->getCbu()}',banco='{$this->getBanco()}',status_process='signedcontract',img_signed='$nameImg',signed_date='{$this->getHorarioSolicitud()}',cuit='{$this->getCuit()}',name_ecommerce='{$this->getNombre()}',customer_service_hours='{$this->getHorario_disponible()}' where id_number='{$this->getNro_dni()}'";
+           
+        }
        
-        $sql= "UPDATE reclute set status='contrato-firmado', mail='{$this->getEmail()}',phone_number='{$this->getTelefono_celular()}',cbu='{$this->getCbu()}',banco='{$this->getBanco()}',status_process='signedcontract',img_signed='$nameImg',signed_date='{$this->getHorarioSolicitud()}',cuit='{$this->getCuit()}',vehicle_brand='{$this->getVehiculoMarca()}',vehicle_model='{$this->getCuit()}',patent='{$this->getPatente()}',name_ecommerce='{$this->getNombre()}',customer_service_hours='{$this->getHorario_disponible()}' where id_number='{$this->getNro_dni()}'";
        
         
         $actualizar = $this->db->query($sql); 
@@ -305,6 +313,61 @@ class Usuarios{
             $result = false;
         }
         return $result;
+    }
+
+    public function getIDACTIVO(){
+        if($_POST){
+            $result = false;
+            $sql = "SELECT reclu.id AS 'idReclute', reco.id AS 'idUsuario' FROM recolectores reco 
+            INNER JOIN reclute reclu ON reclu.id = reco.id_reclute WHERE reclu.id='{$this->getIdenviado()}'"; 
+            $ejecutar = $this->db->query($sql);
+            if($ejecutar && $ejecutar->num_rows>0){
+                $result = $ejecutar;
+
+            }else {
+                $result = false;
+            }
+            return $result;
+
+        }
+    }
+    public function getAllUsuariosRecolectores(){
+    
+
+            $result = false;
+             if(isset($_POST["usuario"])){
+                 
+                 $sql =  "SELECT * from recolectores where id='{$this->getIdenviado()}'";
+                
+                 $ejecucion = $this->db->query($sql);
+
+                
+                 if($ejecucion && $ejecucion->num_rows>0){
+
+                    $result = $ejecucion;
+
+                 }else{
+                     $result= false;
+                 }
+                 return $result;
+
+             }else if($this->getIdenviado() === 'todos'){
+
+                $sql =  "SELECT * from recolectores";
+               
+                 $ejecucion = $this->db->query($sql);
+
+                 if($ejecucion && $ejecucion->num_rows>0){
+
+                    $result = $ejecucion;
+
+                 }else{
+                     $result= false;
+                 }
+                 return $result;
+
+             }
+
     }
     
 }

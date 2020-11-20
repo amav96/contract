@@ -70,13 +70,9 @@ function InsertarPrimerRegistro($nroDocumento,$fotodocumentofront, $fotodocument
 
 function cargarImagenesDocYMono($nroDocumento,$fotodocumentofront, $fotodocumentopost)
 {
-
-   
     // Primera imagen front
 
     $type = 'jpg';
-
-
     $fotodocumentofront = $_FILES['fotodocfront']['tmp_name'];
 
     $nameuno = $nroDocumento . 'front.' . $type;

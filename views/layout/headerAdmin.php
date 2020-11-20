@@ -96,6 +96,11 @@
             <li>
                 <a href="../../views/adm/registrados.php"><i class="fas fa-file-invoice"></i>Solicitudes</a>
             </li>
+
+            <li>
+                <a href="../../views/adm/usuarios.php"><i class="fas fa-file-invoice"></i>Usuarios</a>
+            </li>
+           
            
 
 
